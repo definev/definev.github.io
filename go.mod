@@ -1,4 +1,4 @@
-module github.com/wangchucheng/hugo-eureka-starters
+module github.com/definev/website
 
 go 1.16
 

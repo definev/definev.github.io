@@ -1,5 +1,5 @@
 baseURL: /
-title: Eureka Demo
+title: Bui Dai Duong's Blog
 
 # Uncomment when not installing with Hugo Modules
 # theme: eureka
@@ -9,8 +9,7 @@ theme: wangchucheng.com/hugo-eureka
 
 paginate: 3
 copyright: >
-  &copy; 2021 <a href="https://www.wangchucheng.com/">WANG Chucheng</a> and <a
-  href="https://www.ruiqima.com/">MA Ruiqi</a>
+  &copy; 2023 <a href="https://definev.github.io/">Duong Bui Dai</a>
 enableEmoji: true
 enableGitInfo: false
 summaryLength: 75
