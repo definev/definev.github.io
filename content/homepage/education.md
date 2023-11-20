@@ -1,31 +1,35 @@
 ---
-title: Vintage
+title: Education
 draft: false
-slogan: Love the life you live. Live the life you love.
-imgLeft: images/hero-left.jpg
-imgRight: images/hero-right.jpg
+educations:
+  - title: Bachelor of Computer Science
+    organization:
+      name: Phenikaa University
+      url: https://phenikaa-uni.edu.vn/
+    dates: "2021 - 2025"
+    location: Hanoi
 
-weight: 5
+weight: 4
 widget:
-  handler: vintage
+  handler: education
 
   # Options: sm, md, lg and xl. Default is md.
   width:
 
   sidebar:
     # Options: left and right. Leave blank to hide.
-    position:
+    position: left
     # Options: sm, md, lg and xl. Default is md.
-    scale:
-    
+    scale: sm
+
   background:
     # Options: primary, secondary, tertiary or any valid color value. Default is primary.
-    color: primary
+    color: secondary
     image:
     # Options: auto, cover and contain. Default is auto.
     size:
     # Options: center, top, right, bottom, left.
     position:
     # Options: fixed, local, scroll.
-    attachment: 
+    attachment:
 ---

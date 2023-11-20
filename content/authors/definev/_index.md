@@ -4,9 +4,9 @@ draft: false
 role: Software Engineer
 avatar: images/avatar.jpg
 bio: Want to learn everything, but only have time for a few things.
-# organization:
-#   name: At Home
-#   url: https://definev.github.io/
+organization:
+  name: Example Organization
+  url: https://example.com/
 
 social:
   - icon: envelope
@@ -21,31 +21,9 @@ social:
   - icon: linkedin
     iconPack: fab
     url: https://www.linkedin.com/in/definev/
-
-weight: 1
-widget:
-  handler: about
-
-  # Options: sm, md, lg and xl. Default is md.
-  width:
-
-  sidebar:
-    # Options: left and right. Leave blank to hide.
-    position:
-    # Options: sm, md, lg and xl. Default is md.
-    scale:
-  
-  background:
-    # Options: primary, secondary, tertiary or any valid color value. Default is primary.
-    color: primary
-    image:
-    # Options: auto, cover and contain. Default is auto.
-    size:
-    # Options: center, top, right, bottom, left.
-    position:
-    # Options: fixed, local, scroll.
-    attachment:
 ---
+
+## Self Introduction
 
 Hi all! I'm Dương, a software engineer from Vietnam. I'm currently learning at [Phenikaa University](https://phenikaa-uni.edu.vn/). I'm interested in software development and low-level programming. I'm also a big fan of history and philosophy. I love to learn new things and share my knowledge with others.
 
@@ -60,7 +38,7 @@ My favorite quote:
 
 > The only true wisdom is in knowing you know nothing. - Socrates
 
-> Don't try to be cool, be warm. - Anonymous
+> Don't try to be cool, be warm. - Quincy Jones
 
 ## Contact me
 

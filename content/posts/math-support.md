@@ -3,7 +3,7 @@ title: Math Support
 description:
 toc: true
 authors:
-  - example-author
+  - definev
 tags:
 categories:
 series:
