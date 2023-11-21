@@ -1,10 +1,7 @@
 main:
   - name: About
-    url: '#about'
+    url: /authors/definev
     weight: 1
   - name: Posts
     url: /posts/
     weight: 2
-  - name: Series
-    url: /series/
-    weight: 3

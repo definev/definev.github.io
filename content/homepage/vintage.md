@@ -1,7 +1,7 @@
 ---
 title: Vintage
 draft: false
-slogan: Love the life you live. Live the life you love.
+slogan: Empty your mind, be formless, shapeless — like water.
 imgLeft: images/bg_2.jpeg
 imgRight: images/bg_0.jpeg
 
@@ -20,7 +20,7 @@ widget:
     
   background:
     # Options: primary, secondary, tertiary or any valid color value. Default is primary.
-    color: primary
+    color: secondary
     image:
     # Options: auto, cover and contain. Default is auto.
     size:

@@ -37,7 +37,7 @@ widget:
   
   background:
     # Options: primary, secondary, tertiary or any valid color value. Default is primary.
-    color: primary
+    color: secondary
     image:
     # Options: auto, cover and contain. Default is auto.
     size:
@@ -47,20 +47,7 @@ widget:
     attachment:
 ---
 
-Hi all! I'm Dương, a software engineer from Vietnam. I'm currently learning at [Phenikaa University](https://phenikaa-uni.edu.vn/). I'm interested in software development and low-level programming. I'm also a big fan of history and philosophy. I love to learn new things and share my knowledge with others.
-
-I'm familiar with: [Dart](https://dart.dev), [Flutter](https://flutter.dev) and C/C++. Currently, I'm learning [Go](https://golang.org) and [Rust](https://www.rust-lang.org/). I'm obbsessed with animations and UI/UX design. Love to learn about new technologies and frameworks.
-
-
-My passion for programming ignited at the age of 14 when I decided to jailbreak my iPhone 4S. As I delved into this process, I couldn't help but wonder about the creation of the jailbreak tool and the development of apps. The concept of bringing something to life from scratch fascinated me. Initially, I began my programming journey with Pascal, but its limitations led me to explore C/C++. I immersed myself in understanding algorithms and data structures, using them to tackle various problems.
-
-Despite this technical exploration, my true desire was to craft something practical for people to use. My inaugural project was a snake game coded in C++, albeit in the console (even though not many people use the console these days). As I grasped the fundamentals, my quest for broader horizons led me to discover Flutter in 2019—a cross-platform framework enabling the creation of visually stunning applications for both Android and iOS. Since then, my love for Flutter has only deepened.
-
-My favorite quote:
-
-> The only true wisdom is in knowing you know nothing. - Socrates
-
-> Don't try to be cool, be warm. - Anonymous
+Hi all! I'm Dương, a software engineer and a computer science student from Vietnam. I'm currently learning at [Phenikaa University](https://phenikaa-uni.edu.vn/). I'm interested in software development and low-level programming. I'm also a big fan of history and philosophy. I love to learn new things and share my knowledge with others.
 
 ## Contact me
 
