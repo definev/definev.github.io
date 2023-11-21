@@ -2,8 +2,8 @@
 title: Vintage
 draft: false
 slogan: Love the life you live. Live the life you love.
-imgLeft: images/hero-left.jpg
-imgRight: images/hero-right.jpg
+imgLeft: images/bg_2.jpeg
+imgRight: images/bg_0.jpeg
 
 weight: 5
 widget:
