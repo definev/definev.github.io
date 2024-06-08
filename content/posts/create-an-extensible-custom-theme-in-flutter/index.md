@@ -9,7 +9,8 @@ series: []
 date: 2024-06-08T22:41:26+07:00
 lastmod: 2024-06-08T22:41:26+07:00
 featuredVideo:
-featuredImage: images/1_theme_lerp.gif
+featuredImage:
+thumbnail: images/thumbnail.png
 draft: false
 ---
 
