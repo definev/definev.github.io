@@ -21,7 +21,7 @@ After this article, you will know how to create your own stylish, flashy style ð
 
 `Theme` widget is very useful, it contains dozen of handful pre-built `Material` theme by Google like `colorScheme`, `textTheme`, `cardTheme`, ... And these default properties give us **lerping** feature for free!~ 
 
--- TODO: Insert lerping gif
+![Smooth lerping](images/1_theme_lerp.gif)
 
 The problems when someone want to create slightly difference `textTheme` for example you came from the Web and want to have default `textStyle` preset like `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `p`. 
 
