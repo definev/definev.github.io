@@ -17,7 +17,7 @@ style:
 # E.g. Person, Organization, LocalBusiness, Project, EducationalOrganization
 siteType: Person
 icon: images/icon.png
-publisherName: WANG Chucheng
+publisherName: Bui Dai Duong
 publisherLogo:
 
 highlight:
@@ -28,6 +28,7 @@ highlight:
     # See https://github.com/highlightjs/cdn-release/tree/main/build/languages for available languages.
     languages:
       - dart
+      - go
     # See https://github.com/highlightjs/cdn-release/tree/main/build/styles for available styles.
     style: base16/solarized-light
 
