@@ -14,115 +14,115 @@ thumbnail: images/thumbnail.png
 draft: false
 ---
 
-Theming in flutter is hard! Everyone have they owns implementation for their app. But in Flutter 3.16, we meet new `ThemeExtension` API that fit ours own need for customizing `Theme` object.
+Theming in Flutter is hard! Everyone has their own implementation for their app. But in Flutter 3.16, we meet the new `ThemeExtension` API that fits our own needs for customizing the `Theme` object.
 
 After this article, you will know how to create your own stylish, flashy style 🪄 and not be tied to the default `Material` anymore.
 
-## What problem with `Theme` widget
+## What's wrong with the `Theme` widget?
 
-`Theme` widget is very useful, it contains dozen of handful pre-built `Material` theme by Google like `colorScheme`, `textTheme`, `cardTheme`, ... And these default properties give us **lerping** feature for free!~ 
+The `Theme` widget is very useful. It contains dozens of helpful pre-built `Material` themes from Google like `colorScheme`, `textTheme`, `cardTheme`, etc. These default properties give us the **lerping** feature for free!
 
 ![Smooth lerping](images/1_theme_lerp.gif)
 
-The problems when someone want to create slightly difference `textTheme` for example you came from the Web and want to have default `textStyle` preset like `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `p`. 
+The problem arises when someone wants to create a slightly different `textTheme`. For example, you come from the Web and want to have default `textStyle` presets like `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `p`.
 
-## Approach 1: Mapping equalvalent `textStyle` from `Material` textTheme
+## Approach 1: Mapping equivalent `textStyle` from `Material` textTheme
 
 Now we need to create an `extension` for `Theme` like this:
 
 ```dart
 extension WebTextTheme on Theme {
-    TextStyle get h1 => textTheme.displayLarge;
-    TextStyle get h2 => textTheme.displayMedium;
-    TextStyle get h3 => textTheme.displaySmall;
-    ...
-    TextStyle get p => textTheme.bodyMedium;
+  TextStyle get h1 => textTheme.displayLarge;
+  TextStyle get h2 => textTheme.displayMedium;
+  TextStyle get h3 => textTheme.displaySmall;
+  ...
+  TextStyle get p => textTheme.bodyMedium;
 }
 
 class Foo extends StatelessWidget {
-    Widget build(BuildContext context) {
-        final theme = Theme.of(context);
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
 
-        return Text(
-            "Bar",
-            style: theme.textTheme.p,
-        );
-    }
+    return Text(
+      "Bar",
+      style: theme.textTheme.p,
+    );
+  }
 }
 ```
 
-That nice! Elegant and simple. But this works on pre-define properties that fit with our convention, think very customizable like button this not gonna going well ... 
+That's nice! Elegant and simple. But this works on predefined properties that fit our convention. Think about deeply customizable elements like buttons - this won't go well...
 
 ### Pros
-- Easy implement
-- Lerping for free~
+- Easy implementation
+- Lerping for free
 
 ### Cons
-- Very cumbersome if you want deeply customize
-- Depend on `Material` design specs
+- Very cumbersome if you want deep customization
+- Depends on `Material` design specs
 
-## Approach 2: Create custom `WebTextTheme` class
+## Approach 2: Create a custom `WebTextTheme` class
 
-This is the hard-core one! Create a class and define all `h1`, ..., `h6`, `p` variants and create a static instance to access.
+This is the hard-core one! Create a class and define all `h1`, ..., `h6`, `p` variants, and create a static instance to access.
 
 ```dart
 class WebTextTheme {
-    const WebTextTheme({
-        required this.h1,
-        required this.h2,
-        required this.h3,
-        required this.h4,
-        required this.h5,
-        required this.h6,
-        required this.p,
-    });
+  const WebTextTheme({
+    required this.h1,
+    required this.h2,
+    required this.h3,
+    required this.h4,
+    required this.h5,
+    required this.h6,
+    required this.p,
+  });
 
-    static final defaultWebTextTheme = WebTextTheme(
-        h1: TextStyle(fontSize: 64),
-        h2: TextStyle(fontSize: 58),
-        h3: TextStyle(fontSize: 48),
-        h4: TextStyle(fontSize: 36),
-        h5: TextStyle(fontSize: 32),
-        h6: TextStyle(fontSize: 28),
-        p: TextStyle(fontSize: 16),
-    );
+  static final defaultWebTextTheme = WebTextTheme(
+    h1: TextStyle(fontSize: 64),
+    h2: TextStyle(fontSize: 58),
+    h3: TextStyle(fontSize: 48),
+    h4: TextStyle(fontSize: 36),
+    h5: TextStyle(fontSize: 32),
+    h6: TextStyle(fontSize: 28),
+    p: TextStyle(fontSize: 16),
+  );
 
-    final TextStyle h1;
-    final TextStyle h2;
-    final TextStyle h3;
-    final TextStyle h4;
-    final TextStyle h5;
-    final TextStyle h6;
-    final TextStyle p;
+  final TextStyle h1;
+  final TextStyle h2;
+  final TextStyle h3;
+  final TextStyle h4;
+  final TextStyle h5;
+  final TextStyle h6;
+  final TextStyle p;
 }
 
 class Foo extends StatelessWidget {
-    Widget build(BuildContext context) {
-        final webTextTheme = WebTextTheme.defaultWebTextTheme;
+  Widget build(BuildContext context) {
+    final webTextTheme = WebTextTheme.defaultWebTextTheme;
 
-        return Text(
-            "Bar",
-            style: webTextTheme.p,
-        );
-    }
+    return Text(
+      "Bar",
+      style: webTextTheme.p,
+    );
+  }
 }
 ```
 
-This looks very wrong! What if we have dark mode? How to lerping between light and dark when switching? If your app is never have 2 or more variants of `WebTextTheme` so it totally fine to use it. 
+This looks very wrong! What if we have dark mode? How to lerp between light and dark when switching? If your app never has two or more variants of `WebTextTheme`, it's totally fine to use it.
 
-To be honest, this is simplest and fastest in term of performance. You just grab it and slap in to style 🫣 But in other hand, it have zero value of reusable, swappable.
+To be honest, this is the simplest and fastest in terms of performance. You just grab it and slap it into the style 🫣. But on the other hand, it has zero value of reusability or swappability.
 
 ### Pros
 - Fast
 - Customizable
 
 ### Cons
-- Can't easily swapping
+- Can't easily swap
 - No lerping (😢)
 
 ## Solution
 
-So each appoarch have it own pros & cons to fix this problem. drumm rolll.... Introducing  ***ThemeExtension***. We need to implement 2 method `copyWith` and `lerp`.
+So each approach has its own pros and cons. To fix this problem, we introduce ***ThemeExtension***. We need to implement two methods `copyWith` and `lerp`.
 
 ```dart
 abstract class ThemeExtension<T extends ThemeExtension<T>> {
@@ -145,7 +145,8 @@ abstract class ThemeExtension<T extends ThemeExtension<T>> {
 
 ### Manual
 
-Create new `WebTextTheme` class extends `ThemeExtension`.
+Create a new `WebTextTheme` class that extends `ThemeExtension`.
+
 ```dart
 class WebTextTheme extends ThemeExtension<WebTextTheme> {
   const WebTextTheme({
@@ -223,7 +224,7 @@ class WebTextTheme extends ThemeExtension<WebTextTheme> {
 }
 ```
 
-First implement `copyWith` method, this give us ability to custom individual parameter, without rewrite whole duplicate other parameters.
+First, implement the `copyWith` method. This gives us the ability to customize individual parameters without rewriting the entire duplicate of other parameters.
 
 ```dart
   // Under `final TextStyle p;`
@@ -249,9 +250,9 @@ First implement `copyWith` method, this give us ability to custom individual par
   }
 ```
 
-The `lerp` method for transition between two state smoothly without chopping feel. It takes `other` parameter - the final state we lerping to, `t` the progress of lerping process.
+The `lerp` method is for smooth transitions between two states without a chopping feel. It takes `other` as a parameter - the final state we're lerping to, and `t` as the progress of the lerping process.
 
-In Flutter, `TextStyle` have it built-in `lerp` function.
+In Flutter, `TextStyle` has its built-in `lerp` function.
 
 ```dart
   // Under `final TextStyle p;`
@@ -271,7 +272,7 @@ In Flutter, `TextStyle` have it built-in `lerp` function.
   }
 ```
 
-After setting up the `WebTextTheme` theme extension, we need to register it to `Theme`. Something look like this.
+After setting up the `WebTextTheme` theme extension, we need to register it with `Theme`. It looks something like this:
 
 ```dart
     MaterialApp(
@@ -283,7 +284,7 @@ After setting up the `WebTextTheme` theme extension, we need to register it to `
     )
 ```
 
-And accessing it with `Theme` widget by `extension` method and expect an `WebTextTheme`. It can be null so if you sure that cannot null, put a `!` to enforce it to non-null.
+And access it with the `Theme` widget using the `extension` method and expect a `WebTextTheme`. It can be null, so if you're sure it can't be null, put a `!` to enforce it to be non-null.
 
 ```dart
 Widget build(BuildContext context) {
@@ -294,7 +295,7 @@ Widget build(BuildContext context) {
 }
 ```
 
-Phew! It look clean now! But we need to write 100 lines of code. And most of it is just boilerplate code, so it's a right time to put a code generator to do it for our. 
+Phew! It looks clean now! But we need to write 100 lines of code. And most of it is just boilerplate code, so it's time to put a code generator to work for us.
 
 ### Code-gen
 
@@ -310,9 +311,9 @@ flutter pub add theme_tailor_annotation
 
 #### Usage
 
-Put `tailorMixin` annotation in top of `WebTextTheme` theme extension. and mixed with `_$WebTextThemeTailorMixin` mixin which generated by `theme_tailor`.
+Put the `tailorMixin` annotation at the top of the `WebTextTheme` theme extension and mix it with the `_$WebTextThemeTailorMixin` mixin which is generated by `theme_tailor`.
 
-After that, don't forget to put `web_text_theme.tailor.dart` generated file with this line `part 'web_text_theme.tailor.dart;`
+After that, don't forget to put the `web_text_theme.tailor.dart` generated file with this line `part 'web_text_theme.tailor.dart;`
 
 ```dart
 part 'web_text_theme.tailor.dart';
@@ -348,4 +349,4 @@ class WebTextTheme extends ThemeExtension<WebTextTheme> with _$WebTextThemeTailo
 }
 ```
 
-We reduce to just 27 line of code to get your own custom theme with buttery-smooth 🤌 fast 💨 extensible 🧩
+We reduce the code to just 27 lines to get our own custom theme with buttery-smooth 🤌 fast 💨 extensible 🧩 features. 
