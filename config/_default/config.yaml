@@ -9,7 +9,7 @@ theme: wangchucheng.com/hugo-eureka
 
 paginate: 3
 copyright: >
-  &copy; 2023 <a href="https://definev.github.io/">Duong Bui Dai</a>
+  &copy; {year} <a href="https://definev.github.io/">Duong Bui Dai</a>
 enableEmoji: true
 enableGitInfo: false
 summaryLength: 75
