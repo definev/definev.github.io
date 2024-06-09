@@ -45,7 +45,7 @@ class Foo extends StatelessWidget {
 
     return Text(
       "Bar",
-      style: theme.textTheme.p,
+      style: theme.p,
     );
   }
 }
