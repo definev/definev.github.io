@@ -5,8 +5,8 @@ role: Software Engineer
 avatar: images/avatar.jpg
 bio: Want to learn everything, but only have time for a few things.
 organization:
-  name: Example Organization
-  url: https://example.com/
+  name: lifelong learning
+  url: https://definev.online
 
 social:
   - icon: envelope
