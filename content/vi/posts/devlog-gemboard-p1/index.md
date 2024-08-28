@@ -1,6 +1,6 @@
 ---
-title: Devlog || Gemboard - Forming ideas
-description: How I form Gemboard from a light bulb moment! 
+title: Devlog || Gemboard \#1 - Khởi nguồn ý tưởng
+description: "Bên ngoài khung chat: Kiến tạo tương lai giao tiếp với AI (cùng Gemboard)"
 toc: true
 authors: ["definev"]
 tags: ["dart", "flutter", "devlog"]
@@ -45,21 +45,37 @@ Gemboard được lấy cảm hứng từ góc nhìn trên, từ đó tôi đã 
 
 Tôi đã lên bản vẽ đầu tiên cho giao diện của Gemboard, nó sẽ lấy cảm hứng từ các ứng dụng như Figma và Notion. Với thanh sidebar bên tay trái là nơi chứa các board, và folder cho board. 
 
-TODO: Insert ảnh vẽ bản mẫu
-TODO: Insert phân chia các loại cell
+### Linh hồn của ý tưởng
 
-### Infinity canvas
+![Ảnh bản mẫu đầu tiên](images/gemini_competition.png)
 
-Tôi sử dụng Flutter cho dự án này, trước đó tôi đã từng làm qua những UI như `Stack` kết hợp với `InteractiveViewer` và các UI dạng cuộn 2 chiều như dạng bảng tính. Tuy nhiên các loại UI này đều có nhược điểm là toạ độ của các thành phần trong view phải > 0.
+Với mục tiêu ban đầu là lưu giữ và kết nối các dòng suy nghĩ khi tương tác với AI. Ý tưởng đầu tiên loé lên trong đầu tôi là một dạng UI chatbot truyền thống với mỗi lần chúng ta đặt câu hỏi hay AI trả lời sẽ được trả về như mỗi `Cell`. Mỗi `Cell` này có thể là text, file, hay hình ảnh, video, ... Điều đặc biệt là bạn có thể kéo nó ra ngoài đoạn chat và đưa `Cell` đó sang một đoạn hội thoại khác. 
 
-Lấy ví dụ:
-- Widget A ở toạ độ (độ, 20) thì khi đó ta mới có thể thực hiện các gesture trong widget đó.
-- Nếu Widget B ở toạ độ (-10, -30) Khi dùng `Stack` kết hợp với `InteractiveViewer` phần hiển thị của widget đó vẫn được hiển thị lên tuy nhiên nó không thể thực hiện các gesture (onTap, onLongPressed, etc..) được do thuật toán tìm `hitTest` của flutter chỉ hoạt động trong vùng hiển thị của Widget cha.
+### Loại công cụ
 
+![Ảnh prompt box](images/prompt_box.png)
 
-Rất may mắn, Flutter 3.20 đã có một cải tiến rất lớn cho việc này! Đó chính là API `TwoDimensionalScrollView` và cảm ơn Flutter team đã có một video giới thiệu cách sử dụng không thể nào dễ hiểu hơn, bạn có thể xem nó tại [đây](https://www.youtube.com/watch?v=ppEdTo-VGcg).
+Ngoài `chatbox` truyền thống, tôi có tạo thêm một loại box nữa là `promptbox`. Về cơ bản `promptbox` sẽ thuộc dạng dữ liệu "có cấu trúc" hơn là `chatbox` - một cuộc hội thoại đơn thuần. `promptbox` có cấu trúc dạng:
+- Đầu vào: Danh sách ảnh, text, file
+- Đầu ra: dữ liệu có cấu trúc như ảnh hoặc `json` 
 
-Tôi bắt đầu tạo ra package [boundless_stack](https://github.com/definev/boundless_stack) và open-source nó tại đây. bạn có thể tìm hiểu cách sử dụng nó sâu hơn trong repository này. Sau khi tạo ra package này tôi đã thử chạy với 10000 widget con bên trong và hoàn toàn có thể zoom, pan, và scroll hoàn toàn mượt mà!
+### Loại `Cell` trong canvas
 
-![alt text](images/sample_boundless_stack.png)
+![Cell type](images/cell_type.png)
 
+Hãy nghĩ thêm về `Cell` trong mỗi bảng của chúng ta. Đương nhiên chúng sẽ có 3 loại dữ liệu cơ bản:
+- `Text`
+- `Ảnh`
+- `Âm thanh`
+
+và ngoài ra tôi nhận thấy rằng khi tôi nghiên cứu một vấn đề, tôi thực sự gặp khó khăn cho việc đặt một câu hỏi đúng! Khi tìm được một chuỗi câu hỏi đúng thường sẽ dẫn tôi đến kết quả nhanh hơn. `Brainstorming` chính là loại `Cell` mà tôi đặc biệt thêm vào để giải quyết vấn đề này.
+
+Ngoài các `Cell` có dữ liệu, tôi cũng cần tạo ra các loại `Cell` có tác dụng kết nối các `Cell` với nhau. Có thể gọi nó là các cạnh (`Edge`). 
+
+Một vài tính năng khá hữu ích nếu có như nhóm các `Cell` lại và dán nhãn chúng cũng sẽ giúp tăng khả năng tìm ra insight cho vấn đề dễ dàng hơn.
+
+## Tổng kết
+
+Phù! Vậy là chúng ta đã cùng nhau đi qua hành trình khai sinh ra Gemboard rồi! Từ một ý tưởng lóe sáng về việc cải thiện cách tương tác với AI, Gemboard đã dần thành hình với giao diện "xịn xò" lấy cảm hứng từ Figma và Notion.
+Bạn thấy đấy, không chỉ dừng lại ở việc chat đơn thuần, Gemboard còn cho phép bạn tự do sắp xếp, kết nối các ý tưởng, dữ liệu một cách trực quan và sinh động như đang chơi Lego vậy!
+Tất nhiên, đây mới chỉ là những bước chập chững đầu tiên của Gemboard. Còn rất nhiều điều thú vị đang chờ đón chúng ta ở phía trước. Hãy cùng theo dõi những cập nhật tiếp tiếp theo để khám phá thêm về Gemboard nhé! 😉
