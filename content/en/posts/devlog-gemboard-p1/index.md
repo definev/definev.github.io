@@ -9,7 +9,7 @@ series: ["Gemboard - Devlog"]
 date: 2024-08-27T10:09:32+07:00
 lastmod: 2024-08-27T10:09:32+07:00
 featuredVideo:
-featuredImage:
+featuredImage: images/gemboard.png
 draft: false
 ---
 
