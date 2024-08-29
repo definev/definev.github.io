@@ -42,3 +42,6 @@ taxonomies:
 
 build:
   useResourceCacheWhen: always
+
+params:
+  defaultContentLanguage: en

@@ -1,5 +1,5 @@
 ---
-title: Devlog || Gemboard \#1 - Khởi nguồn ý tưởng
+title: Gemboard || Devlog#1 - Khởi nguồn ý tưởng
 description: "Bên ngoài khung chat: Kiến tạo tương lai giao tiếp với AI (cùng Gemboard)"
 toc: true
 authors: ["definev"]

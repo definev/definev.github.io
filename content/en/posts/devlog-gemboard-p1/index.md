@@ -1,5 +1,5 @@
 ---
-title: Devlog || Gemboard \#1 - The Journey Begins
+title: Gemboard || Devlog#1 - The Journey Begins
 description: "Beyond the Chatbox: Building the Future of AI Interaction (with Gemboard)"
 toc: true
 authors: ["definev"]
