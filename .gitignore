@@ -86,3 +86,5 @@ dist
 # Temporary folders
 tmp/
 temp/ 
+
+.cursor/
