@@ -94,7 +94,7 @@ const Projects = () => {
                                 </div>
                             </div>
 
-                            <div className="lg:w-1/2 h-48 lg:h-full overflow-hidden relative bg-paper sm:border-t-2 md:border-t-2 lg:border-l-2 border-border-brutal">
+                            <div className="lg:w-1/2 h-48 lg:h-full overflow-hidden relative bg-paper sm:border-t-2 md:border-t-2 lg:border-t-0 lg:border-l-2 border-border-brutal">
                                 <img
                                     src={projects[0].image}
                                     alt={projects[0].title}
@@ -182,7 +182,7 @@ const Projects = () => {
 
                         {/* Project 4 - Large Card - Image on left */}
                         <div className="lg:col-span-2 bg-paper-dark border-2 border-border-brutal shadow-lg overflow-hidden lg:flex lg:h-full gap-5">
-                            <div className="lg:w-1/2 h-48 lg:h-full overflow-hidden relative bg-paper sm:border-b-2 md:border-b-2 lg:border-r-2 border-border-brutal">
+                            <div className="lg:w-1/2 h-48 lg:h-full overflow-hidden relative bg-paper sm:border-b-2 md:border-b-2 lg:border-b-0 lg:border-r-2 border-border-brutal">
                                 <img
                                     src={projects[3].image}
                                     alt={projects[3].title}

@@ -112,7 +112,7 @@ const Contact = () => {
               </a>
             </p>
             <p className="text-ink-light text-xs mt-1 font-bold uppercase tracking-wider">
-              © 2024 BÙI ĐẠI DƯƠNG. ALWAYS LEARNING, ALWAYS BUILDING.
+              © 2025 Zen. 
             </p>
           </div>
         </div>

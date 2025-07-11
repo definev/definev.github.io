@@ -1,5 +1,3 @@
-import { ArrowDown } from 'lucide-react'
-
 const Hero = () => {
   return (
     <section id="home" className="min-h-screen paper-texture">
@@ -11,7 +9,7 @@ const Hero = () => {
             <div className="space-y-4">
               <div className="bg-paper border-2 border-border-brutal shadow-md p-6 md:p-8 inline-block">
                 <h1 className="text-3xl md:text-4xl font-display font-bold text-ink tracking-tight">
-                  HI, I'M BÙI ĐẠI DƯƠNG
+                  HI, I'M BÙI ĐẠI DƯƠNG (ZEN)
                 </h1>
               </div>
               
