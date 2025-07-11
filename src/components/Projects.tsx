@@ -5,32 +5,31 @@ const projects = [
         title: "Zentab",
         description: "Multi-account manager for web apps that allows cloning, isolating, and syncing multiple logins across devices. Login once, use everywhere with seamless account switching.",
         technologies: ["Web Extension", "Cross-device Sync", "Account Management", "Privacy"],
-        github: "https://github.com/definev",
-        demo: "https://github.com/definev",
+        website: "https://zentab.app?utm_source=personal_website",
         image: "/zentab-thumbnail.jpg"
     },
     {
         title: "Slideparty",
         description: "Cross-platform slide puzzle game with realtime multiplayer functionality. Winner of 'Best Multiplatform' at Flutter Puzzle Hack Hackathon.",
         technologies: ["Flutter", "Dart Backend", "WebSocket", "Cross-platform"],
-        github: "https://github.com/definev",
-        demo: "https://github.com/definev",
+        github: "https://github.com/definev/slideparty",
+        demo: "https://slideparty.vercel.app/",
         image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=250&fit=crop&crop=center"
     },
     {
         title: "ViL Programming Language",
         description: "A scripting language with pure Vietnamese syntax designed to help students approach programming more easily.",
         technologies: ["Language Design", "Compiler", "Web Editor", "Vietnamese"],
-        github: "https://github.com/definev",
-        demo: "https://github.com/definev",
+        github: "https://github.com/definev/vil",
+        demo: "https://vil-editor.vercel.app/",
         image: "https://images.unsplash.com/photo-1516134850191-6aaac2bdf42c?w=400&h=250&fit=crop&crop=center"
     },
     {
         title: "Gemboard",
         description: "A powerful Flutter application with infinite canvas for brainstorming sessions and data mining. Combines visual representations with large language models to explore complex ideas dynamically.",
         technologies: ["Flutter", "Dart", "Google Gemini", "AI/ML"],
-        github: "https://github.com/definev",
-        demo: "https://github.com/definev",
+        github: "https://github.com/definev/gemboard",
+        demo: "https://wasm.gemboard.io.vn",
         image: "/gemboard-thumbnail.jpg"
     },
 ]
@@ -84,12 +83,27 @@ const Projects = () => {
                                     </div>
 
                                     <div className="flex gap-2">
-                                        <a href={projects[0].github} className="flex-1 lg:flex-none inline-flex items-center justify-center gap-1 bg-paper border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent shadow-md hover:shadow-lg transition-all duration-200">
-                                            <Github size={12} />CODE
-                                        </a>
-                                        <a href={projects[0].demo} className="flex-1 lg:flex-none inline-flex items-center justify-center gap-1 bg-accent border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent-dark shadow-md hover:shadow-lg transition-all duration-200">
-                                            <ExternalLink size={12} />DEMO
-                                        </a>
+                                        {
+                                            projects[0].github && (
+                                                <a href={projects[0].github} className="flex-1 lg:flex-none inline-flex items-center justify-center gap-1 bg-paper border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent shadow-md hover:shadow-lg transition-all duration-200">
+                                                    <Github size={12} />CODE
+                                                </a>
+                                            )
+                                        }
+                                        {
+                                            projects[0].demo && (
+                                                <a href={projects[0].demo} className="flex-1 lg:flex-none inline-flex items-center justify-center gap-1 bg-accent border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent-dark shadow-md hover:shadow-lg transition-all duration-200">
+                                                    <ExternalLink size={12} />DEMO
+                                                </a>
+                                            )
+                                        }
+                                        {
+                                            projects[0].website && (
+                                                <a href={projects[0].website} className="flex-1 lg:flex-none inline-flex items-center justify-center gap-1 bg-paper border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent-dark shadow-md hover:shadow-lg transition-all duration-200">
+                                                    <ExternalLink size={12} />WEBSITE
+                                                </a>
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </div>

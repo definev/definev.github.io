@@ -77,7 +77,7 @@ const Contact = () => {
           ))}
         </div>
         
-        <div className="text-center card-brutal p-6 md:p-8">
+        <div className="text-center card-brutal p-6 md:p-8 mb-20">
           <div className="bg-accent border-2 border-border-brutal p-4 inline-block mb-4">
             <MessageSquare className="text-ink" size={32} />
           </div>
@@ -85,36 +85,18 @@ const Contact = () => {
             OPEN TO OPPORTUNITIES
           </h3>
           <p className="text-ink-light mb-6 max-w-2xl mx-auto text-sm leading-relaxed">
-            {">>>"} I'm currently exploring new opportunities in software development, particularly in roles 
-            that involve low-level programming, machine learning, or building developer tools. 
-            I'm also interested in contributing to open source projects and tech communities.
+            {">>>"} I'm always open to connecting about software engineering—especially opportunities in mobile development, AI, or building tools for developers. 
+            I love collaborating on open source, supporting tech communities, and am available for freelance projects as well. 
+            If you have an idea, a challenge, or just want to chat tech, let's talk!
           </p>
           <a
-            href="mailto:daiduong.workmail@gmail.com?subject=Let's%20discuss%20an%20opportunity"
+            href="mailto:daiduong.workmail@gmail.com?subject=Let's%20chat"
+            target="_blank"
             className="btn-brutal text-sm uppercase tracking-wider inline-flex items-center gap-2"
           >
             <Mail size={16} />
             {">"}{">"}START A CONVERSATION
           </a>
-        </div>
-        
-        <div className="text-center mt-12 pt-6 border-t-2 border-border-brutal">
-          <div className="bg-paper-dark border-2 border-border-brutal shadow-md p-3 md:p-4 inline-block">
-            <p className="text-ink font-medium text-xs">
-              BUILT WITH REACT, TYPESCRIPT, AND TAILWIND CSS •{' '}
-              <a 
-                href="https://definev.github.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-accent font-bold hover:underline uppercase"
-              >
-                VISIT MAIN SITE
-              </a>
-            </p>
-            <p className="text-ink-light text-xs mt-1 font-bold uppercase tracking-wider">
-              © 2025 Zen. 
-            </p>
-          </div>
         </div>
       </div>
     </section>
