@@ -144,10 +144,10 @@ const Projects = () => {
                                 </div>
 
                                 <div className="flex flex-col gap-2">
-                                    <a href={projects[1].github} className="inline-flex items-center justify-center gap-1 bg-paper border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent shadow-md hover:shadow-lg transition-all duration-200">
+                                    <a target="_blank" href={projects[1].github} className="inline-flex items-center justify-center gap-1 bg-paper border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent shadow-md hover:shadow-lg transition-all duration-200">
                                         <Github size={12} />CODE
                                     </a>
-                                    <a href={projects[1].demo} className="inline-flex items-center justify-center gap-1 bg-accent border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent-dark shadow-md hover:shadow-lg transition-all duration-200">
+                                    <a target="_blank" href={projects[1].demo} className="inline-flex items-center justify-center gap-1 bg-accent border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent-dark shadow-md hover:shadow-lg transition-all duration-200">
                                         <ExternalLink size={12} />DEMO
                                     </a>
                                 </div>
@@ -184,10 +184,10 @@ const Projects = () => {
                                 </div>
 
                                 <div className="flex flex-col gap-2">
-                                    <a href={projects[2].github} className="inline-flex items-center justify-center gap-1 bg-paper border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent shadow-md hover:shadow-lg transition-all duration-200">
+                                    <a target="_blank" href={projects[2].github} className="inline-flex items-center justify-center gap-1 bg-paper border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent shadow-md hover:shadow-lg transition-all duration-200">
                                         <Github size={12} />CODE
                                     </a>
-                                    <a href={projects[2].demo} className="inline-flex items-center justify-center gap-1 bg-accent border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent-dark shadow-md hover:shadow-lg transition-all duration-200">
+                                    <a target="_blank" href={projects[2].demo} className="inline-flex items-center justify-center gap-1 bg-accent border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent-dark shadow-md hover:shadow-lg transition-all duration-200">
                                         <ExternalLink size={12} />DEMO
                                     </a>
                                 </div>
@@ -230,10 +230,10 @@ const Projects = () => {
                                     </div>
 
                                     <div className="flex gap-2">
-                                        <a href={projects[3].github} className="flex-1 lg:flex-none inline-flex items-center justify-center gap-1 bg-paper border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent shadow-md hover:shadow-lg transition-all duration-200">
+                                        <a target="_blank" href={projects[3].github} className="flex-1 lg:flex-none inline-flex items-center justify-center gap-1 bg-paper border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent shadow-md hover:shadow-lg transition-all duration-200">
                                             <Github size={12} />CODE
                                         </a>
-                                        <a href={projects[3].demo} className="flex-1 lg:flex-none inline-flex items-center justify-center gap-1 bg-accent border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent-dark shadow-md hover:shadow-lg transition-all duration-200">
+                                        <a target="_blank" href={projects[3].demo} className="flex-1 lg:flex-none inline-flex items-center justify-center gap-1 bg-accent border border-border-brutal px-3 py-2 font-bold text-xs uppercase text-ink hover:bg-accent-dark shadow-md hover:shadow-lg transition-all duration-200">
                                             <ExternalLink size={12} />DEMO
                                         </a>
                                     </div>
