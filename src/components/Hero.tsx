@@ -8,14 +8,14 @@ const Hero = () => {
         <div className="container-max">
           <div className="text-center space-y-6">
             {/* Name & Intro */}
-            <div className="space-y-4">
-              <div className="bg-paper border-2 border-border-brutal shadow-md p-6 md:p-8 inline-block">
+            <div className="space-y-4 max-w-2xl mx-auto">
+              <div className="bg-paper border-2 border-border-brutal shadow-md p-6 md:p-8 w-full">
                 <h1 className="text-3xl md:text-4xl font-display font-bold text-ink tracking-tight">
                   HI, I'M BÙI ĐẠI DƯƠNG (ZEN)
                 </h1>
               </div>
               
-              <div className="bg-accent border-2 border-border-brutal shadow-md p-3 md:p-4 max-w-xl mx-auto">
+              <div className="bg-accent border-2 border-border-brutal shadow-md p-3 md:p-4 w-full">
                 <p className="text-base md:text-lg text-ink font-bold">
                   22 • HANOI • SOFTWARE ENGINEER
                 </p>
@@ -23,7 +23,7 @@ const Hero = () => {
             </div>
             
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6 max-w-2xl mx-auto">
               <a
                 href="#projects"
                 className="btn-brutal text-sm uppercase tracking-wider"
@@ -31,7 +31,7 @@ const Hero = () => {
                 {">"}{">"}SEE MY WORK
               </a>
               <Link
-                to="/"
+                to="/blog"
                 className="btn-brutal-outline text-sm uppercase tracking-wider"
               >
                 {">"}{">"}READ MY BLOG
