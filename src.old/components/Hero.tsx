@@ -1,5 +1,3 @@
-import { Link } from '@tanstack/react-router'
-
 const Hero = () => {
   return (
     <section id="home" className="min-h-screen paper-texture">
@@ -30,12 +28,6 @@ const Hero = () => {
               >
                 {">"}{">"}SEE MY WORK
               </a>
-              <Link
-                to="/blog"
-                className="btn-brutal-outline text-sm uppercase tracking-wider"
-              >
-                {">"}{">"}READ MY BLOG
-              </Link>
               <a
                 href="#contact"
                 className="btn-brutal-outline text-sm uppercase tracking-wider"

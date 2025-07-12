@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background: #faf8f5;
+  }
+  
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    background: #faf8f5;
+    background-image: 
+      /* Fine grain */
+      radial-gradient(circle at 1px 1px, rgba(0,0,0,0.08) 1px, transparent 0),
+      /* Medium grain */
+      radial-gradient(circle at 3px 3px, rgba(0,0,0,0.04) 1px, transparent 0),
+      /* Large grain */
+      radial-gradient(circle at 7px 7px, rgba(0,0,0,0.02) 2px, transparent 0),
+      /* Noise pattern */
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.01) 2px,
+        rgba(0,0,0,0.01) 4px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.01) 2px,
+        rgba(0,0,0,0.01) 4px
+      );
+    background-size: 
+      8px 8px,
+      24px 24px,
+      48px 48px,
+      4px 4px,
+      4px 4px;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-6 py-12 md:px-8 lg:px-12 xl:px-16;
+  }
+  
+  .container-max {
+    @apply max-w-5xl mx-auto;
+  }
+  
+  .text-brutal {
+    @apply font-display font-bold tracking-tight text-ink;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+  }
+  
+  .card-brutal {
+    @apply bg-paper border-2 border-border-brutal shadow-md transition-all duration-200;
+    background-image: 
+      radial-gradient(circle at 2px 2px, rgba(0,0,0,0.08) 1px, transparent 0),
+      radial-gradient(circle at 8px 8px, rgba(0,0,0,0.04) 1px, transparent 0),
+      repeating-linear-gradient(
+        30deg,
+        transparent,
+        transparent 1px,
+        rgba(0,0,0,0.015) 1px,
+        rgba(0,0,0,0.015) 2px
+      );
+    background-size: 4px 4px, 16px 16px, 6px 6px;
+  }
+  
+  .card-brutal:hover {
+    @apply shadow-lg;
+  }
+  
+  .btn-brutal {
+    @apply bg-accent border-2 border-border-brutal font-bold text-ink px-4 py-2 
+           shadow-md transition-all duration-200 hover:shadow-lg;
+  }
+  
+  .btn-brutal-outline {
+    @apply bg-paper border-2 border-border-brutal font-bold text-ink px-4 py-2 
+           shadow-md transition-all duration-200 hover:bg-accent 
+           hover:shadow-lg;
+  }
+  
+  .paper-texture {
+    background: #faf8f5;
+    background-image: 
+      /* Heavy grain overlay */
+      radial-gradient(circle at 1px 1px, rgba(0,0,0,0.12) 1px, transparent 0),
+      radial-gradient(circle at 5px 5px, rgba(0,0,0,0.06) 1px, transparent 0),
+      radial-gradient(circle at 15px 15px, rgba(0,0,0,0.03) 2px, transparent 0),
+      /* Organic paper fibers */
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 1px,
+        rgba(0,0,0,0.02) 1px,
+        rgba(0,0,0,0.02) 3px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 1px,
+        rgba(0,0,0,0.02) 1px,
+        rgba(0,0,0,0.02) 3px
+      ),
+      /* Random dots for aged paper */
+      radial-gradient(circle at 33% 66%, rgba(139,69,19,0.02) 1px, transparent 0),
+      radial-gradient(circle at 77% 23%, rgba(139,69,19,0.02) 1px, transparent 0),
+      radial-gradient(circle at 12% 89%, rgba(139,69,19,0.02) 1px, transparent 0);
+    background-size: 
+      6px 6px,
+      18px 18px,
+      36px 36px,
+      8px 8px,
+      8px 8px,
+      120px 120px,
+      180px 180px,
+      240px 240px;
+  }
+  
+  .skill-expert {
+    @apply bg-accent border-2 border-border-brutal text-ink;
+  }
+  
+  .skill-advanced {
+    @apply bg-green-400 border-2 border-border-brutal text-ink;
+  }
+  
+  .skill-intermediate {
+    @apply bg-yellow-400 border-2 border-border-brutal text-ink;
+  }
+  
+  .skill-learning {
+    @apply bg-blue-400 border-2 border-border-brutal text-ink;
+  }
+
+  .skill-ngmi {
+    @apply bg-pink-400 border-2 border-border-brutal text-ink;
+  }
+} 
