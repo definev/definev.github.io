@@ -9,12 +9,14 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { DefaultCatchBoundary } from '../components/DefaultCatchBoundary'
 import { NotFound } from '../components/NotFound'
+import FloatingNavbar from '../components/FloatingNavbar'
 import '../styles/globals.css'
 
 function RootComponent() {
   return (
     <RootDocument>
       <Outlet />
+      <FloatingNavbar />
     </RootDocument>
   )
 }
