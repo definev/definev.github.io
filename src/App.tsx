@@ -38,7 +38,7 @@ function App() {
     return () => observer.disconnect()
   }, [])
 
-  const handleTabClick = (href) => {
+  const handleTabClick = (href: string) => {
     const sectionId = href.slice(1)
     setActiveSection(sectionId)
   }
