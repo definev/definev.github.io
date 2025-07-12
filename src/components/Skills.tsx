@@ -46,23 +46,26 @@ const skillCategories = [
     ]
   },
   {
-    title: "Design & UI Tools",
+    title: "Design Tools",
     skills: [
       { name: "Prototyping", level: 90 },
       { name: "Design Systems", level: 90 },
       { name: "Figma", level: 85 },
-      { name: "UI/UX Design", level: 80 },
+      { name: "UI/UX Design", level: 85 },
+      { name: "Canva", level: 80 },
     ]
   },
   {
-    title: "Tools & Cloud",
+    title: "Developer Tools",
     skills: [
       { name: "Git/GitHub", level: 92 },
-      { name: "Supabase", level: 80 },
-      { name: "Docker", level: 75 },
+      { name: "Supabase", level: 85 },
       { name: "Firebase", level: 85 },
-      { name: "AWS/GCP", level: 70 },
-      { name: "CI/CD", level: 75 }
+      { name: "Docker", level: 75 },
+      { name: "Github Actions", level: 75 },
+      { name: "Vercel", level: 75 },
+      { name: "AWS", level: 70 },
+      { name: "GCP", level: 65 },
     ]
   },
   {
