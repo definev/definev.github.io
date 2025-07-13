@@ -53,8 +53,8 @@ async function loadBlogData(): Promise<BlogData> {
     }
 
     blogDataCache = await response.json()
-    console.log(`Successfully loaded ${blogDataCache!.totalPosts} blog posts`)
-    return blogDataCache!
+    console.log(`Successfully loaded ${blogDataCache?.totalPosts} blog posts`)
+    return blogDataCache as BlogData
   } catch (error) {
     console.error('Error loading blog data:', error)
     
