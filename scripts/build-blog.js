@@ -5,8 +5,8 @@ import readingTime from 'reading-time'
 
 // Configuration
 const BLOG_CONTENT_DIR = path.join(process.cwd(), 'content', 'blog')
-const OUTPUT_DIR = path.join(process.cwd(), 'public')
-const OUTPUT_FILE = path.join(OUTPUT_DIR, 'blog-data.json')
+const OUTPUT_DIR = path.join(process.cwd(), 'src', 'data')
+const OUTPUT_FILE = path.join(OUTPUT_DIR, 'blog-data.ts')
 
 /**
  * Generate an excerpt from markdown content
@@ -121,14 +121,27 @@ function buildBlogData() {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true })
   }
 
-  // Write blog data to JSON file
+  // Generate TypeScript file with embedded blog data
   const blogData = {
     posts,
     generatedAt: new Date().toISOString(),
     totalPosts: posts.length,
   }
 
-  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(blogData, null, 2))
+  // Create TypeScript file content
+  const tsContent = `// Auto-generated blog data - do not edit manually
+// Generated at: ${new Date().toISOString()}
+
+import type { BlogData, BlogPost } from '~/utils/blog'
+
+export const blogData: BlogData = ${JSON.stringify(blogData, null, 2)} as BlogData
+
+export const blogPosts: BlogPost[] = blogData.posts
+
+export default blogData
+`
+
+  fs.writeFileSync(OUTPUT_FILE, tsContent)
   console.log(`📝 Blog data written to ${OUTPUT_FILE}`)
   console.log(`📊 Generated ${posts.length} blog posts`)
 }

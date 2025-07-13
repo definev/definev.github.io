@@ -1,4 +1,9 @@
-{
+// Auto-generated blog data - do not edit manually
+// Generated at: 2025-07-13T17:04:38.739Z
+
+import type { BlogData, BlogPost } from '~/utils/blog'
+
+export const blogData: BlogData = {
   "posts": [
     {
       "id": "building-modern-react-applications-with-tanstack",
@@ -34,6 +39,10 @@
       "author": "Bùi Đại Dương (Zennn.mind)"
     }
   ],
-  "generatedAt": "2025-07-13T16:40:38.069Z",
+  "generatedAt": "2025-07-13T17:04:38.739Z",
   "totalPosts": 2
-}
+} as BlogData
+
+export const blogPosts: BlogPost[] = blogData.posts
+
+export default blogData

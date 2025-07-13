@@ -22,21 +22,26 @@ The GitHub Actions workflow automatically:
 - Builds the blog data
 - Deploys to Cloudflare Workers
 
-## Step 3: Fixed Cloudflare 522 Error
+## Step 3: Embedded Blog Data (No More Fetch Requests!)
 
-✅ **FIXED**: The blog system now uses relative paths (`/blog-data.json`) instead of absolute URLs to avoid circular requests that caused 522 errors on Cloudflare Workers.
+✅ **IMPROVED**: The blog system now embeds blog data directly in TypeScript files instead of using external JSON files. This eliminates:
+- ❌ No more fetch requests
+- ❌ No more 522 errors on Cloudflare
+- ❌ No more network dependencies
+- ✅ Faster loading
+- ✅ Better reliability
+- ✅ Type-safe blog data
 
 ## Step 4: Test Development
 
 ```bash
-bun run dev
+bun run dev:blog
 ```
 
-You should see logs like:
-```
-Loading blog data from: http://localhost:3000/blog-data.json
-Successfully loaded 2 blog posts
-```
+This will:
+1. Build the blog data from markdown files
+2. Start the development server
+3. Load blog data directly from TypeScript imports (no network requests!)
 
 ## Step 5: Deploy to Production
 
@@ -60,24 +65,24 @@ bun run deploy:cloudflare
 ## Troubleshooting
 
 ### 522 Connection Timed Out Error (Cloudflare)
-✅ **FIXED**: If you were getting 522 errors when fetching blog data, this has been resolved by using relative paths instead of absolute URLs.
+✅ **FIXED**: No more 522 errors! Blog data is now embedded directly in TypeScript files, eliminating all network requests.
 
-### 404 Not Found Errors
-If you see "404 Not Found" errors:
+### Missing Blog Data
+If blog posts aren't showing up:
 
-1. **Check environment file**:
-   ```bash
-   cat .env.local
-   ```
-
-2. **Rebuild blog data**:
+1. **Rebuild blog data**:
    ```bash
    bun run build:blog
    ```
 
-3. **Restart dev server**:
+2. **Restart dev server**:
    ```bash
-   bun run dev
+   bun run dev:blog
+   ```
+
+3. **Check the generated file**:
+   ```bash
+   cat src/data/blog-data.ts
    ```
 
 ### Environment Variable Issues
