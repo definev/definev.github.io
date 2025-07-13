@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { createServerFn } from '@tanstack/start'
+import { createServerFn } from '@tanstack/react-start'
 import { useState } from 'react'
 
 // Type definition for blog post
@@ -19,26 +19,26 @@ const getAllPosts = createServerFn({ method: 'GET' }).handler(async () => {
   // 2. Parse markdown files from a directory
   // 3. Fetch from a database
   // 4. Use a headless CMS
-  
+
   const mockPosts: BlogPost[] = [
     {
       id: '1',
-      title: 'Welcome to My Blog',
-      excerpt: 'This is the first post on my technical blog where I\'ll share insights about software development, programming, and technology.',
-      date: '2024-01-15',
-      slug: 'welcome-to-my-blog',
-      tags: ['introduction', 'blog', 'welcome'],
-    },
-    {
-      id: '2',
       title: 'Building Modern React Applications with TanStack',
       excerpt: 'Exploring the power of TanStack ecosystem for building robust, type-safe React applications with excellent developer experience.',
-      date: '2024-01-10',
+      date: '2025-07-13',
       slug: 'building-modern-react-applications-with-tanstack',
       tags: ['react', 'tanstack', 'typescript', 'web development'],
     },
+    {
+      id: '2',
+      title: 'Welcome to My Blog',
+      excerpt: 'This is the first post on my technical blog where I\'ll share insights about software development, programming, and technology.',
+      date: '2025-07-12',
+      slug: 'welcome-to-my-blog',
+      tags: ['introduction', 'blog', 'welcome'],
+    },
   ]
-  
+
   return mockPosts
 })
 
@@ -48,12 +48,27 @@ export const Route = createFileRoute('/blog/')({
     const posts = await getAllPosts()
     return { posts }
   },
+  head: () => ({
+    meta: [
+      {
+        title: 'Blog - Bùi Đại Dương (Zennn.mind)',
+      },
+      {
+        name: 'description',
+        content: 'Technical blog posts about software development, programming, and technology insights from a young developer.',
+      },
+      {
+        name: 'keywords',
+        content: 'blog, programming, software development, react, flutter, golang, technology',
+      },
+    ],
+  }),
 })
 
 function BlogIndex() {
   const { posts } = Route.useLoaderData()
   const [searchTerm, setSearchTerm] = useState('')
-  
+
   const filteredPosts = posts.filter(post =>
     post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -61,74 +76,137 @@ function BlogIndex() {
   )
 
   return (
-    <div className="space-y-8">
-      {/* Search Bar */}
-      <div className="mb-8">
-        <input
-          type="text"
-          placeholder="Search blog posts..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-2 rounded-lg bg-slate-800 text-white placeholder-slate-400 border border-slate-700 focus:border-blue-500 focus:outline-none"
-        />
-      </div>
-
-      {/* Blog Posts List */}
-      <div className="space-y-6">
-        {filteredPosts.length > 0 ? (
-          filteredPosts.map((post) => (
-            <article
-              key={post.id}
-              className="bg-slate-800 rounded-lg p-6 border border-slate-700 hover:border-slate-600 transition-colors"
+    <div className="min-h-screen paper-texture">
+      <div className="section-padding pt-12 pb-28">
+        <div className="container-max">
+          {/* Back to Home Button */}
+          <div className="mb-8 flex justify-between items-start gap-4 max-w-4xl mx-auto">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 btn-brutal-outline text-sm uppercase tracking-wider"
             >
-              <div className="flex flex-col space-y-3">
-                <div className="flex items-center justify-between">
-                  <time className="text-slate-400 text-sm">
-                    {new Date(post.date).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </time>
-                </div>
-                
-                <h2 className="text-xl font-bold text-white hover:text-blue-300 transition-colors">
-                  <Link to={`/blog/${post.slug}`}>
-                    {post.title}
-                  </Link>
-                </h2>
-                
-                <p className="text-slate-300 leading-relaxed">
-                  {post.excerpt}
-                </p>
-                
-                <div className="flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 bg-blue-600 text-white text-xs rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                
-                <Link
-                  to={`/blog/${post.slug}`}
-                  className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors"
-                >
-                  Read more →
-                </Link>
-              </div>
-            </article>
-          ))
-        ) : (
-          <div className="text-center py-12">
-            <p className="text-slate-400 text-lg">
-              {searchTerm ? 'No posts found matching your search.' : 'No blog posts available yet.'}
-            </p>
+              {"<"} BACK TO HOME
+            </Link>
+
+            <div className="inline-flex items-center gap-2 btn-brutal text-sm uppercase tracking-wider">
+              [ZEN BLOG]
+            </div>
           </div>
-        )}
+
+          {/* Header */}
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="bg-accent border-2 border-b-0 border-border-brutal shadow-md p-4 max-w-4xl mx-auto">
+              <p className="text-ink text-sm font-bold">
+                {">>>"} Sharing insights about software development, programming, and<br />everything in between I'm interested in.
+              </p>
+            </div>
+          </div>
+
+          {/* Search Bar */}
+          <div className="mb-16 max-w-4xl mx-auto">
+            <div className="bg-paper border-2 border-border-brutal shadow-lg p-4">
+              <label htmlFor="search" className="block text-ink font-bold text-sm uppercase tracking-wider mb-2">
+                SEARCH POSTS:
+              </label>
+              <input
+                id="search"
+                type="text"
+                placeholder="TYPE TO SEARCH..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full px-4 py-3 bg-paper-dark text-ink placeholder-ink-light border-2 border-border-brutal font-bold text-sm uppercase tracking-wider focus:outline-none focus:bg-accent focus:border-border-brutal transition-colors"
+              />
+            </div>
+          </div>
+
+          {/* Blog Posts List */}
+          <div className="max-w-4xl mx-auto">
+            {filteredPosts.length > 0 ? (
+              <div className="flex flex-col gap-8">
+                {filteredPosts.map((post, index) => (
+                  <article
+                    key={post.id}
+                    className="w-full bg-paper-dark border-2 border-border-brutal shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  >
+                    <div className="p-6 md:p-8">
+                      {/* Post Header */}
+                      <div className="flex items-center justify-between gap-4 mb-6">
+                        <div className="flex items-center gap-4">
+                          <div className="bg-accent border border-border-brutal px-3 py-1">
+                            <time className="text-ink text-xs font-bold uppercase tracking-wider">
+                              {new Date(post.date).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric',
+                              })}
+                            </time>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Post Title */}
+                      <h2 className={`font-display font-bold text-ink uppercase tracking-tight mb-6 hover:text-accent transition-colors group-hover:text-accent ${index === 0 ? 'text-xl md:text-2xl' : 'text-lg md:text-xl'
+                        }`}>
+                        <Link to='/blog/$slug' params={{ slug: post.slug }}>
+                          {post.title}
+                        </Link>
+                      </h2>
+
+                      {/* Post Excerpt */}
+                      <p className={`text-ink leading-relaxed mb-6 font-medium ${index === 0 ? 'text-base' : 'text-sm'
+                        }`}>
+                        {post.excerpt}
+                      </p>
+
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {post.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-3 py-1 bg-paper border border-border-brutal text-ink text-xs font-bold uppercase tracking-wider hover:bg-accent transition-colors"
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Read More Button */}
+                      <div className="flex justify-between items-center">
+                        <Link
+                          to='/blog/$slug' params={{ slug: post.slug }}
+                          className="btn-brutal text-sm uppercase tracking-wider"
+                        >
+                          {">>"}READ MORE
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-16">
+                <div className="bg-paper border-2 border-border-brutal shadow-lg p-8 max-w-lg mx-auto">
+                  <h3 className="text-xl font-display font-bold text-ink uppercase tracking-tight mb-4">
+                    {searchTerm ? 'NO MATCHES FOUND' : 'NO POSTS YET'}
+                  </h3>
+                  <p className="text-ink font-bold text-sm">
+                    {searchTerm
+                      ? 'Try different keywords or browse all posts.'
+                      : 'New blog posts are coming soon. Check back later!'}
+                  </p>
+                  {searchTerm && (
+                    <button
+                      onClick={() => setSearchTerm('')}
+                      className="btn-brutal mt-6 text-sm uppercase tracking-wider"
+                    >
+                      CLEAR SEARCH
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   )

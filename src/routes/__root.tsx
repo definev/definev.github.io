@@ -16,7 +16,6 @@ function RootComponent() {
   return (
     <RootDocument>
       <Outlet />
-      <FloatingNavbar />
     </RootDocument>
   )
 }
