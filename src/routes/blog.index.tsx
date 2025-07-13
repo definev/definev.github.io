@@ -1,51 +1,17 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { useState } from 'react'
-
-// Type definition for blog post
-interface BlogPost {
-  id: string
-  title: string
-  excerpt: string
-  date: string
-  slug: string
-  tags: string[]
-}
+import { getAllPosts, type BlogPost } from '~/utils/blog'
 
 // Server function to get all blog posts
-const getAllPosts = createServerFn({ method: 'GET' }).handler(async () => {
-  // This is a placeholder - in the future, you would:
-  // 1. Read from a content management system
-  // 2. Parse markdown files from a directory
-  // 3. Fetch from a database
-  // 4. Use a headless CMS
-
-  const mockPosts: BlogPost[] = [
-    {
-      id: '1',
-      title: 'Building Modern React Applications with TanStack',
-      excerpt: 'Exploring the power of TanStack ecosystem for building robust, type-safe React applications with excellent developer experience.',
-      date: '2025-07-13',
-      slug: 'building-modern-react-applications-with-tanstack',
-      tags: ['react', 'tanstack', 'typescript', 'web development'],
-    },
-    {
-      id: '2',
-      title: 'Welcome to My Blog',
-      excerpt: 'This is the first post on my technical blog where I\'ll share insights about software development, programming, and technology.',
-      date: '2025-07-12',
-      slug: 'welcome-to-my-blog',
-      tags: ['introduction', 'blog', 'welcome'],
-    },
-  ]
-
-  return mockPosts
+const getAllPostsServer = createServerFn({ method: 'GET' }).handler(async () => {
+  return await getAllPosts()
 })
 
 export const Route = createFileRoute('/blog/')({
   component: BlogIndex,
   loader: async () => {
-    const posts = await getAllPosts()
+    const posts = await getAllPostsServer()
     return { posts }
   },
   head: () => ({
