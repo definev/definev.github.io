@@ -1,3 +1,5 @@
+import { buildUrl, isDevelopment } from './config'
+
 // Type definitions
 export interface BlogPost {
   id: string
@@ -41,77 +43,27 @@ async function loadBlogData(): Promise<BlogData> {
   }
 
   try {
-    // In development, try to load from file system
-    if (process.env.NODE_ENV === 'development') {
-      const fs = await import('fs')
-      const path = await import('path')
-      const matter = await import('gray-matter')
-      const readingTime = await import('reading-time')
-
-      const BLOG_CONTENT_DIR = path.join(process.cwd(), 'content', 'blog')
-      
-      if (fs.existsSync(BLOG_CONTENT_DIR)) {
-        const files = fs
-          .readdirSync(BLOG_CONTENT_DIR)
-          .filter((file) => file.endsWith('.md') || file.endsWith('.mdx'))
-          .filter((file) => file !== 'README.md')
-
-        const posts: BlogPost[] = []
-        
-        for (const file of files) {
-          try {
-            const fullPath = path.join(BLOG_CONTENT_DIR, file)
-            const fileContents = fs.readFileSync(fullPath, 'utf8')
-            const { data, content } = matter.default(fileContents)
-
-            if (!data.title || !data.date) {
-              continue
-            }
-
-            const slug = file.replace(/\.(md|mdx)$/, '')
-            const { minutes } = readingTime.default(content)
-            const excerpt = data.excerpt || generateExcerpt(content)
-
-            posts.push({
-              id: slug,
-              title: data.title,
-              content,
-              excerpt,
-              date: data.date,
-              slug,
-              tags: data.tags || [],
-              readTime: Math.ceil(minutes),
-              published: data.published ?? true,
-              author: data.author,
-              image: data.image,
-            })
-          } catch (error) {
-            console.error(`Error processing ${file}:`, error)
-          }
-        }
-
-        posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-
-        blogDataCache = {
-          posts,
-          generatedAt: new Date().toISOString(),
-          totalPosts: posts.length,
-        }
-
-        return blogDataCache
-      }
-    }
-
-    // In production or if development file reading fails, load from JSON
-    const response = await fetch('/blog-data.json')
+    // Build the correct URL for the blog data
+    const blogDataUrl = buildUrl('/blog-data.json')
+    console.log(`Loading blog data from: ${blogDataUrl}`)
+    
+    const response = await fetch(blogDataUrl)
     if (!response.ok) {
-      throw new Error('Failed to load blog data')
+      throw new Error(`Failed to load blog data from ${blogDataUrl}: ${response.status} ${response.statusText}`)
     }
 
     blogDataCache = await response.json()
+    console.log(`Successfully loaded ${blogDataCache.totalPosts} blog posts`)
     return blogDataCache!
   } catch (error) {
     console.error('Error loading blog data:', error)
+    
+    // In development, provide helpful debugging info
+    if (isDevelopment()) {
+      console.error('Make sure you have run "bun run build:blog" to generate the blog data file')
+      console.error('Expected file location: public/blog-data.json')
+    }
+    
     // Return empty blog data as fallback
     blogDataCache = {
       posts: [],

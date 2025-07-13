@@ -8,6 +8,10 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      # Set production environment variables
+      VITE_APP_URL: ${{ secrets.VITE_APP_URL || 'https://zennn.dev' }}
+      VITE_NODE_ENV: production
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,6 +26,16 @@ jobs:
 
       - name: Generate route tree
         run: bunx tsr generate
+
+      - name: Create production environment file
+        run: |
+          echo "VITE_APP_URL=${{ env.VITE_APP_URL }}" > .env.production
+          echo "VITE_NODE_ENV=${{ env.VITE_NODE_ENV }}" >> .env.production
+          echo "Created .env.production with:"
+          cat .env.production
+
+      - name: Build blog data
+        run: bun run build:blog
 
       - name: Build with TanStack Start
         run: bun run build

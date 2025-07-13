@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
+    "dev": "bun run build:blog && vite dev",
     "build": "bun run build:blog && vite build",
     "build:blog": "bun run scripts/build-blog.js",
     "start": "vite start",
