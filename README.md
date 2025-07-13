@@ -1,4 +1,4 @@
-# Định Ev - Portfolio Website
+# Portfolio Website
 
 A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. Features a clean, minimalist design inspired by professional developer portfolios.
 
