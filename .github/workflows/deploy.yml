@@ -27,12 +27,11 @@ jobs:
       - name: Generate route tree
         run: bunx tsr generate
 
-      - name: Create production environment file
+      - name: Display environment variables
         run: |
-          echo "VITE_APP_URL=${{ env.VITE_APP_URL }}" > .env.production
-          echo "VITE_NODE_ENV=${{ env.VITE_NODE_ENV }}" >> .env.production
-          echo "Created .env.production with:"
-          cat .env.production
+          echo "Environment variables for build:"
+          echo "VITE_APP_URL=${{ env.VITE_APP_URL }}"
+          echo "VITE_NODE_ENV=${{ env.VITE_NODE_ENV }}"
 
       - name: Build blog data
         run: bun run build:blog

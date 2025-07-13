@@ -52,7 +52,7 @@ export function getEnvironment(): 'development' | 'production' | 'test' {
     return env === 'development' ? 'development' : 'production'
   } else {
     // Server-side
-    return (process.env.NODE_ENV as any) || 'development'
+    return (process.env.VITE_NODE_ENV as any) || 'development'
   }
 }
 

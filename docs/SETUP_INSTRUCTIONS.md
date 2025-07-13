@@ -7,22 +7,33 @@ Your blog system has been updated with environment-based URL configuration! Here
 I've created basic environment files for you:
 
 - ✅ `.env.local` - for development
-- ✅ `.env.production` - for production (GitHub Pages)
+- ✅ `.env.production` - for local production testing
 
-## Step 2: Update Production URL (If Needed)
+## Step 2: GitHub Actions Deployment
 
-Check your `.env.production` file and update the URL if needed:
+For GitHub Actions deployment, see the **GITHUB_DEPLOYMENT_SETUP.md** guide which shows you how to:
+- Set up GitHub Secrets properly
+- Configure environment variables securely
+- Deploy without uploading `.env` files
 
+## Step 3: Update URLs (If Needed)
+
+### For Local Development
+Your `.env.local` is already configured for local development:
 ```bash
-# Edit .env.production
-VITE_APP_URL=https://definev.github.io
+VITE_APP_URL=http://localhost:3000
+VITE_NODE_ENV=development
+```
+
+### For Manual Production Testing
+If you want to test production builds locally, update `.env.production`:
+```bash
+# Edit .env.production for your actual domain
+VITE_APP_URL=https://your-actual-domain.com
 VITE_NODE_ENV=production
 ```
 
-If your site uses a different URL, update it accordingly:
-- GitHub Pages project: `https://definev.github.io/repository-name`
-- Custom domain: `https://your-domain.com`
-- Cloudflare Pages: `https://your-app.pages.dev`
+**Note**: For GitHub Actions deployment, environment variables are handled through GitHub Secrets, not local `.env` files.
 
 ## Step 3: Test Development
 
