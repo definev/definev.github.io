@@ -2,38 +2,29 @@
 
 Your blog system has been updated with environment-based URL configuration! Here's how to complete the setup:
 
-## Step 1: Environment Files (Already Created)
+## Step 1: Environment Configuration
 
-I've created basic environment files for you:
+The project uses environment variables for configuration:
 
-- ✅ `.env.local` - for development
-- ✅ `.env.production` - for local production testing
+### Development Environment
+- Uses `.env.local` (highest priority) or `.env` (fallback)
+- Already configured for local development
+
+### Production Environment  
+- GitHub Actions sets environment variables directly in the workflow
+- Uses `VITE_APP_URL` from GitHub Secrets (defaults to https://zennn.dev)
+- No `.env.production` file needed - system environment variables have highest priority
 
 ## Step 2: GitHub Actions Deployment
 
-For GitHub Actions deployment, see the **GITHUB_DEPLOYMENT_SETUP.md** guide which shows you how to:
-- Set up GitHub Secrets properly
-- Configure environment variables securely
-- Deploy without uploading `.env` files
+The GitHub Actions workflow automatically:
+- Sets production environment variables
+- Builds the blog data
+- Deploys to Cloudflare Workers
 
-## Step 3: Update URLs (If Needed)
+## Step 3: Fixed Cloudflare 522 Error
 
-### For Local Development
-Your `.env.local` is already configured for local development:
-```bash
-VITE_APP_URL=http://localhost:3000
-VITE_NODE_ENV=development
-```
-
-### For Manual Production Testing
-If you want to test production builds locally, update `.env.production`:
-```bash
-# Edit .env.production for your actual domain
-VITE_APP_URL=https://your-actual-domain.com
-VITE_NODE_ENV=production
-```
-
-**Note**: For GitHub Actions deployment, environment variables are handled through GitHub Secrets, not local `.env` files.
+✅ **FIXED**: The blog system now uses relative paths (`/blog-data.json`) instead of absolute URLs to avoid circular requests that caused 522 errors on Cloudflare Workers.
 
 ## Step 4: Test Development
 
@@ -68,6 +59,10 @@ bun run deploy:cloudflare
 
 ## Troubleshooting
 
+### 522 Connection Timed Out Error (Cloudflare)
+✅ **FIXED**: If you were getting 522 errors when fetching blog data, this has been resolved by using relative paths instead of absolute URLs.
+
+### 404 Not Found Errors
 If you see "404 Not Found" errors:
 
 1. **Check environment file**:
@@ -84,6 +79,11 @@ If you see "404 Not Found" errors:
    ```bash
    bun run dev
    ```
+
+### Environment Variable Issues
+If environment variables aren't working:
+- **Development**: Check `.env.local` or `.env` files
+- **Production**: Environment variables are set by GitHub Actions, not .env files
 
 ## For Different Hosting Platforms
 

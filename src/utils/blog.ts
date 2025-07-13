@@ -43,8 +43,8 @@ async function loadBlogData(): Promise<BlogData> {
   }
 
   try {
-    // Build the correct URL for the blog data
-    const blogDataUrl = buildUrl('/blog-data.json')
+    // Use relative path to avoid circular requests on Cloudflare Workers
+    const blogDataUrl = '/blog-data.json'
     console.log(`Loading blog data from: ${blogDataUrl}`)
     
     const response = await fetch(blogDataUrl)
@@ -53,7 +53,7 @@ async function loadBlogData(): Promise<BlogData> {
     }
 
     blogDataCache = await response.json()
-    console.log(`Successfully loaded ${blogDataCache.totalPosts} blog posts`)
+    console.log(`Successfully loaded ${blogDataCache!.totalPosts} blog posts`)
     return blogDataCache!
   } catch (error) {
     console.error('Error loading blog data:', error)
