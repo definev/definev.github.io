@@ -51,7 +51,7 @@ function processMarkdownFile(filename) {
     }
 
     // Skip unpublished posts in production
-    if (process.env.NODE_ENV === 'production' && data.published === false) {
+    if (process.env.VITE_NODE_ENV === 'production' && data.published === false) {
       console.log(`Skipping unpublished post: ${filename}`)
       return null
     }
