@@ -186,7 +186,7 @@ function buildBlogData(publishedOnly = false) {
           const derivedSlug = raw.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-')
           post.seriesSlug = derivedSlug
           // Also ensure a minimal series entry exists for enrichment
-          if (!slugToTitle.has(derivedSlug)) {
+          if (!slugToTitle.has(derivedSlug) && !publishedOnly) {
             slugToTitle.set(derivedSlug, raw)
             titleToSlug.set(raw, derivedSlug)
             seriesEntries.push({
@@ -258,7 +258,7 @@ export default blogData
       stats.latestDate = post.date
     }
     // If the series was not declared via frontmatter file, create a minimal one
-    if (!titleToSeries.has(title)) {
+    if (!titleToSeries.has(title) && !publishedOnly) {
       titleToSeries.set(title, {
         slug: title.toLowerCase().replace(/\s+/g, '-'),
         title,
@@ -316,4 +316,4 @@ export default seriesData
 }
 
 // Run the build
-buildBlogData(false) 
+buildBlogData(true) 

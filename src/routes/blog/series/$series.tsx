@@ -10,6 +10,9 @@ const getSeriesPostsServer = createServerFn({ method: 'GET' })
     if (!seriesMeta) {
       throw notFound()
     }
+    if (seriesMeta.published === false) {
+      throw notFound()
+    }
     const posts = await getPostsBySeries(seriesMeta.slug)
     if (!posts || posts.length === 0) {
       throw notFound()

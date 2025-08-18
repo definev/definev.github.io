@@ -4,9 +4,12 @@ import { getAllSeries, getAllSeriesMeta } from '~/utils/blog'
 
 // Server function to retrieve all series with counts and latest date
 const getAllSeriesServer = createServerFn({ method: 'GET' }).handler(async () => {
-  const series = await getAllSeriesMeta()
-  // Map to UI-ready summary and sort
-  return series.sort((a, b) => new Date(b.latestDate!).getTime() - new Date(a.latestDate!).getTime())
+  const all = await getAllSeriesMeta()
+  // Hide unpublished series; sort by latest date desc
+  const series = all
+    .filter((s) => s.published !== false)
+    .sort((a, b) => new Date(b.latestDate || 0).getTime() - new Date(a.latestDate || 0).getTime())
+  return series
 })
 
 export const Route = createFileRoute('/blog/series/')({
