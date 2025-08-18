@@ -1,41 +1,48 @@
 ---
-title: "Welcome to My Blog"
+title: "Welcome to Zen Blog"
 excerpt: "This is the first post on my technical blog where I'll share insights about software development, programming, and technology."
 date: "2025-07-11"
 tags: ["introduction", "blog", "welcome"]
 published: true
 author: "Bùi Đại Dương (Zennn.mind)"
 ---
+Hi! I’m **Bùi Đại Dương** - but you can just call me **Zen** (it’s a nickname that makes my Vietnamese name easier to pronounce in English). I’m a fresh grad from **Phenikaa University in Vietnam**, trying to figure out this big, exciting, sometimes confusing journey into computer science.
 
-# Welcome to My Blog
+I’ve always been a curious person, and this blog is my place to share that curiosity: little discoveries, fun facts, and the ups and downs of my very early career. Think of it like a mix of notes, stories, and experiments from someone still learning the ropes.
 
-This is the first post on my technical blog where I'll share insights about software development, programming, and technology.
+---
 
-## About This Blog
+## What’s this blog about?
 
-I'm excited to start this journey of sharing knowledge and experiences from my work as a full-stack developer. Here you'll find:
+Mostly things I find fascinating in **computer architecture**, **mobile development**, and **programming languages**. But I’ll admit-I’m also **obsessed with UI/UX design**. I love when things not only *work well* but also *look and feel great*. So don’t be surprised if some posts drift into the design side of tech too.
 
-- **Technical tutorials** on modern web development
-- **Insights** from real-world projects
-- **Best practices** for building scalable applications
-- **Tools and frameworks** that I love working with
+And while I don’t feel like an expert yet (far from it!), I believe that being a little uncomfortable means I’m learning-and that’s a good thing. 🌱
 
-## What's Coming Next
+---
 
-I have several exciting topics planned:
+## What’s next?
 
-1. Building modern React applications with TanStack
-2. Mobile development with Flutter
-3. Backend development with Golang
-4. Cloud deployment strategies
-5. And much more!
+I’ve been digging into some cool topics these past few months, especially around how computers really work under the hood. So, in my next few posts, I’ll take you along for a tour of the computer world-from the basics to some surprising details.
 
-## Stay Connected
+Stay tuned, it should be fun! 🚀
 
-I encourage you to reach out if you have questions, suggestions, or just want to connect. You can find me on:
+---
 
-- **GitHub**: [github.com/definev](https://github.com/definev)
-- **LinkedIn**: [linkedin.com/in/definev](https://linkedin.com/in/definev)
-- **Twitter**: [@definev2](https://twitter.com/definev2)
+## A little fun fact
 
-Thank you for reading, and I look forward to sharing more content with you soon! 
+Outside of tech, I’m a proud cat parent 🐾-I share my home with **three cats**, and yes, they occasionally walk across my keyboard while I’m coding. (So if you ever see some random “asdfghjkl” in my code snippets… you know who to blame 😼).
+
+
+![Mun, Ji, Tieu (From left to right)](/public/tieu-mun-ji.jpeg)
+
+---
+
+## Let’s connect!
+
+I’d love to hear from you-questions, ideas, random thoughts, or just a “hi.” You can find me here:
+
+* **GitHub**: [github.com/definev](https://github.com/definev)
+* **LinkedIn**: [linkedin.com/in/definev](https://linkedin.com/in/definev)
+* **Twitter**: [@definev2](https://twitter.com/definev2)
+
+Thanks for reading, and welcome aboard this journey-I’m glad you’re here. 🙌

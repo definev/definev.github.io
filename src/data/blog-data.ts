@@ -1,31 +1,14 @@
 // Auto-generated blog data - do not edit manually
-// Generated at: 2025-07-13T17:04:38.739Z
+// Generated at: 2025-08-18T04:36:17.073Z
 
 import type { BlogData, BlogPost } from '~/utils/blog'
 
 export const blogData: BlogData = {
   "posts": [
     {
-      "id": "building-modern-react-applications-with-tanstack",
-      "title": "Building Modern React Applications with TanStack",
-      "content": "\n# Building Modern React Applications with TanStack\n\nThe TanStack ecosystem has revolutionized how we build React applications. In this post, I'll explore the key components and why they're game-changers for modern web development.\n\n## What is TanStack?\n\nTanStack is a collection of high-quality, type-safe libraries for building modern web applications. The ecosystem includes:\n\n- **TanStack Router**: Type-safe routing for React applications\n- **TanStack Query**: Data fetching and state management\n- **TanStack Table**: Powerful data grid component\n- **TanStack Start**: Full-stack React framework\n\n## Feature Comparison\n\n| Library | Type Safety | Bundle Size | Learning Curve |\n|---------|-------------|-------------|---------------|\n| TanStack Query | ⭐⭐⭐⭐⭐ | Small | Easy |\n| TanStack Router | ⭐⭐⭐⭐⭐ | Medium | Moderate |\n| TanStack Table | ⭐⭐⭐⭐⭐ | Large | Advanced |\n\n## Why Choose TanStack?\n\n### 1. Type Safety First\n\nEverything in TanStack is designed with TypeScript in mind. You get:\n\n- [x] Fully inferred types\n- [x] Compile-time error checking\n- [x] Excellent IDE support\n- [x] Reduced runtime errors\n\n### 2. Developer Experience\n\nThe DX is exceptional:\n\n- [ ] ~Poor documentation~ (**Actually excellent!**)\n- [x] Intuitive APIs\n- [x] Rich debugging tools\n- [x] Active community support\n\n### 3. Performance\n\nTanStack libraries are optimized for:\n\n- Minimal bundle size\n- Efficient rendering\n- Smart caching strategies\n- Optimistic updates\n\n## Getting Started\n\nHere's a simple example of using TanStack Query:\n\n```tsx\nimport { useQuery } from '@tanstack/react-query'\n\nfunction UserProfile({ userId }: { userId: string }) {\n  const { data, isLoading, error } = useQuery({\n    queryKey: ['user', userId],\n    queryFn: () => fetchUser(userId),\n  })\n\n  if (isLoading) return <div>Loading...</div>\n  if (error) return <div>Error: {error.message}</div>\n\n  return <div>Hello, {data.name}!</div>\n}\n```\n\n> **Pro Tip**: Always use TypeScript with TanStack libraries for the best developer experience!\n\n## Conclusion\n\nTanStack provides a comprehensive solution for building modern React applications. The combination of type safety, developer experience, and performance makes it an excellent choice for any React project.\n\nGive it a try in your next project - you won't be disappointed! ",
-      "excerpt": "Exploring the power of TanStack ecosystem for building robust, type-safe React applications with excellent developer experience.",
-      "date": "2025-07-12",
-      "slug": "building-modern-react-applications-with-tanstack",
-      "tags": [
-        "react",
-        "tanstack",
-        "typescript",
-        "web development"
-      ],
-      "readTime": 2,
-      "published": true,
-      "author": "Bùi Đại Dương (Zennn.mind)"
-    },
-    {
       "id": "welcome-to-my-blog",
-      "title": "Welcome to My Blog",
-      "content": "\n# Welcome to My Blog\n\nThis is the first post on my technical blog where I'll share insights about software development, programming, and technology.\n\n## About This Blog\n\nI'm excited to start this journey of sharing knowledge and experiences from my work as a full-stack developer. Here you'll find:\n\n- **Technical tutorials** on modern web development\n- **Insights** from real-world projects\n- **Best practices** for building scalable applications\n- **Tools and frameworks** that I love working with\n\n## What's Coming Next\n\nI have several exciting topics planned:\n\n1. Building modern React applications with TanStack\n2. Mobile development with Flutter\n3. Backend development with Golang\n4. Cloud deployment strategies\n5. And much more!\n\n## Stay Connected\n\nI encourage you to reach out if you have questions, suggestions, or just want to connect. You can find me on:\n\n- **GitHub**: [github.com/definev](https://github.com/definev)\n- **LinkedIn**: [linkedin.com/in/definev](https://linkedin.com/in/definev)\n- **Twitter**: [@definev2](https://twitter.com/definev2)\n\nThank you for reading, and I look forward to sharing more content with you soon! ",
+      "title": "Welcome to Zen Blog",
+      "content": "Hi! I’m **Bùi Đại Dương** - but you can just call me **Zen** (it’s a nickname that makes my Vietnamese name easier to pronounce in English). I’m a fresh grad from **Phenikaa University in Vietnam**, trying to figure out this big, exciting, sometimes confusing journey into computer science.\n\nI’ve always been a curious person, and this blog is my place to share that curiosity: little discoveries, fun facts, and the ups and downs of my very early career. Think of it like a mix of notes, stories, and experiments from someone still learning the ropes.\n\n---\n\n## What’s this blog about?\n\nMostly things I find fascinating in **computer architecture**, **mobile development**, and **programming languages**. But I’ll admit-I’m also **obsessed with UI/UX design**. I love when things not only *work well* but also *look and feel great*. So don’t be surprised if some posts drift into the design side of tech too.\n\nAnd while I don’t feel like an expert yet (far from it!), I believe that being a little uncomfortable means I’m learning-and that’s a good thing. 🌱\n\n---\n\n## What’s next?\n\nI’ve been digging into some cool topics these past few months, especially around how computers really work under the hood. So, in my next few posts, I’ll take you along for a tour of the computer world-from the basics to some surprising details.\n\nStay tuned, it should be fun! 🚀\n\n---\n\n## A little fun fact\n\nOutside of tech, I’m a proud cat parent 🐾-I share my home with **three cats**, and yes, they occasionally walk across my keyboard while I’m coding. (So if you ever see some random “asdfghjkl” in my code snippets… you know who to blame 😼).\n\n\n![Mun, Ji, Tieu (From left to right)](/public/tieu-mun-ji.jpeg)\n\n---\n\n## Let’s connect!\n\nI’d love to hear from you-questions, ideas, random thoughts, or just a “hi.” You can find me here:\n\n* **GitHub**: [github.com/definev](https://github.com/definev)\n* **LinkedIn**: [linkedin.com/in/definev](https://linkedin.com/in/definev)\n* **Twitter**: [@definev2](https://twitter.com/definev2)\n\nThanks for reading, and welcome aboard this journey-I’m glad you’re here. 🙌",
       "excerpt": "This is the first post on my technical blog where I'll share insights about software development, programming, and technology.",
       "date": "2025-07-11",
       "slug": "welcome-to-my-blog",
@@ -34,13 +17,13 @@ export const blogData: BlogData = {
         "blog",
         "welcome"
       ],
-      "readTime": 1,
+      "readTime": 2,
       "published": true,
       "author": "Bùi Đại Dương (Zennn.mind)"
     }
   ],
-  "generatedAt": "2025-07-13T17:04:38.739Z",
-  "totalPosts": 2
+  "generatedAt": "2025-08-18T04:36:17.073Z",
+  "totalPosts": 1
 } as BlogData
 
 export const blogPosts: BlogPost[] = blogData.posts

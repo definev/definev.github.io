@@ -14,18 +14,18 @@ const MarkdownContent = ({ content, className = '' }: MarkdownContentProps) => {
                 remarkPlugins={[remarkGfm]}
                 components={{
                     h1: ({ children }) => (
-                        <h1 className="text-2xl md:text-3xl font-display font-bold text-ink uppercase tracking-tight my-6 p-4 bg-accent border-2 border-border-brutal shadow-md">
-                            {children}
+                        <h1 className="text-xl md:text-xl font-display font-bold text-ink uppercase tracking-tight mb-6 p-2 bg-accent border-2 border-border-brutal shadow-md">
+                            # {children}
                         </h1>
                     ),
                     h2: ({ children }) => (
-                        <h2 className="text-xl md:text-2xl font-display font-bold text-ink uppercase tracking-tight my-5 p-3 bg-paper-dark border-2 border-border-brutal shadow-md">
-                            {children}
+                        <h2 className="text-lg md:text-lg font-display font-bold text-ink uppercase tracking-tight mb-5 p-2 bg-paper-dark border-2 border-border-brutal shadow-md">
+                            ## {children}
                         </h2>
                     ),
                     h3: ({ children }) => (
-                        <h3 className="text-lg md:text-xl font-display font-bold text-ink uppercase tracking-tight my-4 p-2 bg-paper border-2 border-border-brutal shadow-md">
-                            {children}
+                        <h3 className="text-md md:text-md font-display font-bold text-ink uppercase tracking-tight my-4 p-2 bg-paper border-2 border-border-brutal shadow-md">
+                            ### {children}
                         </h3>
                     ),
                     p: ({ children }) => (
@@ -34,7 +34,7 @@ const MarkdownContent = ({ content, className = '' }: MarkdownContentProps) => {
                         </p>
                     ),
                     strong: ({ children }) => (
-                        <strong className="font-bold bg-accent px-1 py-0.5 border border-border-brutal text-ink">
+                        <strong className="font-bold text-accent">
                             {children}
                         </strong>
                     ),
@@ -68,8 +68,23 @@ const MarkdownContent = ({ content, className = '' }: MarkdownContentProps) => {
                             {children}
                         </a>
                     ),
+                    img: ({ src, alt, title }) => (
+                        <div className="my-8 p-2 bg-paper border-2 border-border-brutal shadow-lg">
+                            <img
+                                src={src}
+                                alt={alt}
+                                title={title}
+                                className="w-full h-auto border-2 border-border-brutal shadow-md"
+                            />
+                            {alt && (
+                                <p className="mt-2 text-xs text-center text-white bg-accent px-2 py-1 border border-border-brutal font-medium uppercase tracking-wide">
+                                    {alt}
+                                </p>
+                            )}
+                        </div>
+                    ),
                     blockquote: ({ children }) => (
-                        <blockquote className="border-l-4 border-accent bg-paper-dark p-4 my-6 border">
+                        <blockquote className="border-l-4 border-accent bg-paper-dark p-4 my-6 border [&_p]:mb-0">
                             {children}
                         </blockquote>
                     ),

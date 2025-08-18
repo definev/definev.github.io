@@ -96,10 +96,10 @@ function BlogIndex() {
                   >
                     <div className="p-6 md:p-8">
                       {/* Post Header */}
-                      <div className="flex items-center justify-between gap-4 mb-6">
+                      <div className="flex items-center justify-between gap-4 mb-3">
                         <div className="flex items-center gap-4">
-                          <div className="bg-accent border border-border-brutal px-3 py-1">
-                            <time className="text-ink text-xs font-bold uppercase tracking-wider">
+                          <div className="bg-accent px-3 py-1 text-white">
+                            <time className="text-white text-xs font-bold uppercase tracking-wider">
                               {new Date(post.date).toLocaleDateString('en-US', {
                                 year: 'numeric',
                                 month: 'short',
@@ -111,40 +111,18 @@ function BlogIndex() {
                       </div>
 
                       {/* Post Title */}
-                      <h2 className={`font-display font-bold text-ink uppercase tracking-tight mb-6 hover:text-accent transition-colors group-hover:text-accent ${index === 0 ? 'text-xl md:text-2xl' : 'text-lg md:text-xl'
+                      <h3 className={`font-display font-bold text-ink uppercase tracking-tight mb-6 hover:text-accent transition-colors group-hover:text-accent ${index === 0 ? 'text-xl md:text-2xl' : 'text-lg md:text-xl'
                         }`}>
                         <Link to='/blog/$slug' params={{ slug: post.slug }}>
                           {post.title}
                         </Link>
-                      </h2>
+                      </h3>
 
                       {/* Post Excerpt */}
-                      <p className={`text-ink leading-relaxed mb-6 font-medium ${index === 0 ? 'text-base' : 'text-sm'
+                      <p className={`text-ink leading-relaxed font-medium ${index === 0 ? 'text-base' : 'text-sm'
                         }`}>
                         {post.excerpt}
                       </p>
-
-                      {/* Tags */}
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {post.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-3 py-1 bg-paper border border-border-brutal text-ink text-xs font-bold uppercase tracking-wider hover:bg-accent transition-colors"
-                          >
-                            #{tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Read More Button */}
-                      <div className="flex justify-between items-center">
-                        <Link
-                          to='/blog/$slug' params={{ slug: post.slug }}
-                          className="btn-brutal text-sm uppercase tracking-wider"
-                        >
-                          {">>"}READ MORE
-                        </Link>
-                      </div>
                     </div>
                   </article>
                 ))}

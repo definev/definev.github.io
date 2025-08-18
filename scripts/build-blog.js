@@ -77,6 +77,8 @@ function processMarkdownFile(filename) {
       published: data.published ?? true,
       author: data.author,
       image: data.image,
+      series: data.series,
+      seriesOrder: data.seriesOrder,
     }
   } catch (error) {
     console.error(`Error processing ${filename}:`, error)
@@ -107,9 +109,11 @@ function buildBlogData() {
   const posts = []
   for (const file of files) {
     const post = processMarkdownFile(file)
-    if (post) {
+    if (post && post.published) {
       posts.push(post)
       console.log(`✅ Processed: ${post.title}`)
+    } else {
+      console.log(`❌ Skipped: ${post.title}`)
     }
   }
 

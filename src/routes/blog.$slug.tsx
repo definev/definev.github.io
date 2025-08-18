@@ -2,9 +2,9 @@ import { createFileRoute, Link, notFound } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import FloatingNavbar from '~/components/FloatingNavbar'
 import MarkdownContent from '~/components/MarkdownContent'
-import { getPostBySlug as getPostBySlugUtil, type BlogPost } from '~/utils/blog'
+import { getPostBySlug as getPostBySlugUtil, getSeriesNavigation, type BlogPost } from '~/utils/blog'
 
-// Server function to get a single blog post by slug
+// Server function to get a single blog post by slug with series navigation
 const getPostBySlugServer = createServerFn({ method: 'GET' })
   .validator((slug: string) => slug)
   .handler(async ({ data: slug }) => {
@@ -12,14 +12,15 @@ const getPostBySlugServer = createServerFn({ method: 'GET' })
     if (!post) {
       throw notFound()
     }
-    return post
+    const seriesNav = await getSeriesNavigation(post)
+    return { post, seriesNav }
   })
 
 export const Route = createFileRoute('/blog/$slug')({
   component: BlogPost,
   loader: async ({ params }) => {
-    const post = await getPostBySlugServer({ data: params.slug })
-    return { post }
+    const data = await getPostBySlugServer({ data: params.slug })
+    return data
   },
   head: ({ loaderData }) => ({
     meta: [
@@ -39,7 +40,7 @@ export const Route = createFileRoute('/blog/$slug')({
 })
 
 function BlogPost() {
-  const { post } = Route.useLoaderData()
+  const { post, seriesNav } = Route.useLoaderData()
 
   return (
     <div className="min-h-screen paper-texture">
@@ -61,15 +62,15 @@ function BlogPost() {
 
           <article className="max-w-4xl mx-auto">
             {/* Article Header */}
-            <header className="mb-12">
-              <div className="bg-paper border-2 border-border-brutal shadow-lg p-6 md:p-8 mb-6">
-                <h1 className="text-3xl md:text-4xl font-display font-bold text-ink uppercase tracking-tight mb-6">
+            <header className="mb-6">
+              <div className="bg-paper border-2 border-border-brutal shadow-lg p-6 md:p-4 mb-3">
+                <h1 className="text-2xl md:text-3xl font-display font-bold text-ink uppercase tracking-tight mb-3">
                   {post.title}
                 </h1>
 
-                <div className="flex items-center justify-between flex-wrap gap-4 mb-6">
+                <div className="flex items-center justify-between flex-wrap gap-4">
                   <div className="flex items-center gap-4 text-ink-light text-sm font-bold">
-                    <div className="bg-accent border border-border-brutal px-3 py-1">
+                    <div className="bg-accent border border-accent px-3 py-1 text-white">
                       <time className="uppercase tracking-wider">
                         {new Date(post.date).toLocaleDateString('en-US', {
                           year: 'numeric',
@@ -83,29 +84,18 @@ function BlogPost() {
                     </div>
                   </div>
                 </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {post.tags.map((tag: string) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 bg-paper-dark border border-border-brutal text-ink text-xs font-bold uppercase tracking-wider hover:bg-accent transition-colors"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
               </div>
 
               {/* Excerpt */}
-              <div className="bg-accent border-2 border-border-brutal shadow-md p-4 md:p-6 mb-8">
-                <p className="text-ink font-bold text-lg md:text-xl leading-relaxed">
+              <div className="bg-accent border-2 border-border-brutal shadow-md p-4">
+                <p className="text-ink font-bold text-sm md:text-sm leading-relaxed">
                   {post.excerpt}
                 </p>
               </div>
             </header>
 
             {/* Article Content */}
-            <div className="bg-paper-dark border-2 border-border-brutal shadow-lg p-6 md:p-8 mb-12">
+            <div className="bg-paper-dark border-2 border-border-brutal shadow-lg p-4 mb-12">
               <MarkdownContent content={post.content} />
             </div>
 
