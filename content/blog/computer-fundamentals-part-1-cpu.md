@@ -5,7 +5,7 @@ date: "2025-07-14"
 tags: ["computer science", "hardware", "cpu", "fundamentals"]
 published: false
 author: "Bùi Đại Dương (Zennn.mind)"
-series: "Computer Fundamentals"
+series: "computer-fundamentals"
 seriesOrder: 1
 ---
 
@@ -43,10 +43,10 @@ Every CPU operation follows this fundamental cycle:
 3. **Execute**: Perform the operation
 4. **Store**: Save the result
 
-```
+```bash
 Memory → CPU → ALU → Result
   ↑                    ↓
-  ←── Control Unit ←────
+  ─── Control Unit ─────
 ```
 
 ## CPU Performance Factors

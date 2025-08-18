@@ -1,7 +1,6 @@
 import { createFileRoute, Outlet } from '@tanstack/react-router'
-import FloatingNavbar from '~/components/FloatingNavbar'
 
-export const Route = createFileRoute('/blog')({
+export const Route = createFileRoute('/blog/_layout')({
   component: BlogLayout,
   head: () => ({
     meta: [

@@ -1,8 +1,7 @@
 import { createFileRoute, Link, notFound } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
-import FloatingNavbar from '~/components/FloatingNavbar'
 import MarkdownContent from '~/components/MarkdownContent'
-import { getPostBySlug as getPostBySlugUtil, getSeriesNavigation, type BlogPost } from '~/utils/blog'
+import { getPostBySlug as getPostBySlugUtil, getSeriesNavigation } from '~/utils/blog'
 
 // Server function to get a single blog post by slug with series navigation
 const getPostBySlugServer = createServerFn({ method: 'GET' })
@@ -16,7 +15,7 @@ const getPostBySlugServer = createServerFn({ method: 'GET' })
     return { post, seriesNav }
   })
 
-export const Route = createFileRoute('/blog/$slug')({
+export const Route = createFileRoute('/blog/posts/$slug')({
   component: BlogPost,
   loader: async ({ params }) => {
     const data = await getPostBySlugServer({ data: params.slug })
@@ -99,11 +98,53 @@ function BlogPost() {
               <MarkdownContent content={post.content} />
             </div>
 
+            {/* Series Navigation */}
+            {seriesNav && (
+              <div className="bg-paper border-2 border-border-brutal shadow-sm p-3 mb-8">
+                <div className="flex items-center justify-between gap-2">
+                  {/* Previous */}
+                  {seriesNav.previousPost ? (
+                    <Link
+                      to="/blog/posts/$slug"
+                      params={{ slug: seriesNav.previousPost.slug }}
+                      className="inline-flex items-center gap-2 px-3 py-1 bg-paper-dark border-2 border-border-brutal text-ink text-[11px] font-bold uppercase tracking-wider hover:bg-accent/10 transition-colors"
+                    >
+                      ‹ Prev
+                    </Link>
+                  ) : (
+                    <span className="inline-flex items-center gap-2 px-3 py-1 bg-paper-dark border-2 border-border-brutal text-ink text-[11px] font-bold uppercase tracking-wider opacity-40 cursor-not-allowed">
+                      ‹ Prev
+                    </span>
+                  )}
+
+                  {/* Indicator */}
+                  <span className="text-ink-light text-[11px] font-bold uppercase tracking-wider">
+                    {seriesNav.series} — {seriesNav.currentIndex}/{seriesNav.totalPosts}
+                  </span>
+
+                  {/* Next */}
+                  {seriesNav.nextPost ? (
+                    <Link
+                      to="/blog/posts/$slug"
+                      params={{ slug: seriesNav.nextPost.slug }}
+                      className="inline-flex items-center gap-2 px-3 py-1 bg-paper-dark border-2 border-border-brutal text-ink text-[11px] font-bold uppercase tracking-wider hover:bg-accent/10 transition-colors"
+                    >
+                      Next ›
+                    </Link>
+                  ) : (
+                    <span className="inline-flex items-center gap-2 px-3 py-1 bg-paper-dark border-2 border-border-brutal text-ink text-[11px] font-bold uppercase tracking-wider opacity-40 cursor-not-allowed">
+                      Next ›
+                    </span>
+                  )}
+                </div>
+              </div>
+            )}
+
             {/* Article Footer */}
             <footer className="bg-paper border-2 border-border-brutal shadow-md p-6 md:p-8">
               <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
                 <Link
-                  to="/blog"
+                  to="/blog/posts"
                   className="btn-brutal-outline text-sm uppercase tracking-wider"
                 >
                   {"<"} MORE POSTS
@@ -139,4 +180,4 @@ function BlogPost() {
       </div>
     </div>
   )
-} 
+}

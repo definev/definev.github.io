@@ -26,7 +26,7 @@ Instead of reading markdown files at runtime, the system:
 ## How to Add a New Blog Post
 
 1. **Create a new markdown file** in the `content/blog/` directory
-2. **Use the filename as the URL slug** (e.g., `my-awesome-post.md` becomes `/blog/my-awesome-post`)
+2. **Use the filename as the URL slug** (e.g., `my-awesome-post.md` becomes `/blog/posts/my-awesome-post`)
 3. **Add frontmatter** at the top of the file with metadata
 4. **Write your content** in Markdown format
 

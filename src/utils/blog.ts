@@ -13,6 +13,7 @@ export interface BlogPost {
   image?: string;
   series?: string;
   seriesOrder?: number;
+  seriesSlug?: string;
 }
 
 export interface BlogPostFrontmatter {
@@ -33,8 +34,28 @@ export interface BlogData {
   totalPosts: number;
 }
 
+export interface SeriesMeta {
+  slug: string;
+  title: string;
+  description: string;
+  tags: string[];
+  published: boolean;
+  image?: string;
+  order?: number;
+  content: string;
+  postCount?: number;
+  latestDate?: string | null;
+}
+
+export interface SeriesData {
+  series: SeriesMeta[];
+  generatedAt: string;
+  totalSeries: number;
+}
+
 // Import the embedded blog data
 import blogData from "~/data/blog-data";
+import seriesData from "~/data/series-data";
 
 /**
  * Get all blog posts
@@ -119,8 +140,10 @@ export async function getPostsBySeries(
   seriesName: string,
 ): Promise<BlogPost[]> {
   return blogData.posts
-    .filter((post) => post.series?.toLowerCase() === seriesName.toLowerCase())
-    .sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0));
+    .filter((post) =>
+      post.seriesSlug?.toLowerCase() === seriesName.toLowerCase()
+    )
+    .sort((a, b) => (b.seriesOrder || 0) - (a.seriesOrder || 0));
 }
 
 /**
@@ -129,25 +152,31 @@ export async function getPostsBySeries(
 export async function getAllSeries(): Promise<
   { name: string; postCount: number; latestDate: string }[]
 > {
+  // Prefer prebuilt series metadata if available
+  if (seriesData && Array.isArray(seriesData.series)) {
+    return seriesData.series.map((s) => ({
+      name: s.title,
+      postCount: typeof s.postCount === "number" ? s.postCount : 0,
+      latestDate: s.latestDate || "",
+    }));
+  }
+
+  // Fallback to deriving from posts (shouldn't happen in normal flow)
   const seriesMap = new Map<
     string,
     { posts: BlogPost[]; latestDate: string }
   >();
-
-  blogData.posts
-    .filter((post) => post.series)
-    .forEach((post) => {
-      const seriesName = post.series!;
-      if (!seriesMap.has(seriesName)) {
-        seriesMap.set(seriesName, { posts: [], latestDate: post.date });
-      }
-      const seriesData = seriesMap.get(seriesName)!;
-      seriesData.posts.push(post);
-      if (new Date(post.date) > new Date(seriesData.latestDate)) {
-        seriesData.latestDate = post.date;
-      }
-    });
-
+  blogData.posts.filter((post) => post.series).forEach((post) => {
+    const seriesName = post.series!;
+    if (!seriesMap.has(seriesName)) {
+      seriesMap.set(seriesName, { posts: [], latestDate: post.date });
+    }
+    const data = seriesMap.get(seriesName)!;
+    data.posts.push(post);
+    if (new Date(post.date) > new Date(data.latestDate)) {
+      data.latestDate = post.date;
+    }
+  });
   return Array.from(seriesMap.entries()).map((
     [name, { posts, latestDate }],
   ) => ({
@@ -155,6 +184,22 @@ export async function getAllSeries(): Promise<
     postCount: posts.length,
     latestDate,
   }));
+}
+
+/**
+ * Get full series metadata list
+ */
+export async function getAllSeriesMeta(): Promise<SeriesMeta[]> {
+  return seriesData.series;
+}
+
+/**
+ * Get a single series meta by slug
+ */
+export async function getSeriesMetaBySlug(
+  slug: string,
+): Promise<SeriesMeta | null> {
+  return seriesData.series.find((s) => s.slug === slug) || null;
 }
 
 /**
@@ -174,7 +219,7 @@ export async function getSeriesNavigation(currentPost: BlogPost): Promise<
     return null;
   }
 
-  const seriesPosts = await getPostsBySeries(currentPost.series);
+  const seriesPosts = await getPostsBySeries(currentPost.seriesSlug!);
   const currentIndex = seriesPosts.findIndex((post) =>
     post.slug === currentPost.slug
   );
@@ -187,8 +232,8 @@ export async function getSeriesNavigation(currentPost: BlogPost): Promise<
     series: currentPost.series,
     currentIndex: currentIndex + 1,
     totalPosts: seriesPosts.length,
-    previousPost: currentIndex > 0 ? seriesPosts[currentIndex - 1] : undefined,
-    nextPost: currentIndex < seriesPosts.length - 1
+    nextPost: currentIndex > 0 ? seriesPosts[currentIndex - 1] : undefined,
+    previousPost: currentIndex < seriesPosts.length - 1
       ? seriesPosts[currentIndex + 1]
       : undefined,
     allPosts: seriesPosts,

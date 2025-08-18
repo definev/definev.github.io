@@ -5,7 +5,7 @@ date: "2025-07-15"
 tags: ["computer science", "hardware", "memory", "fundamentals"]
 published: false
 author: "Bùi Đại Dương (Zennn.mind)"
-series: "Computer Fundamentals"
+series: "computer-fundamentals"
 seriesOrder: 2
 ---
 

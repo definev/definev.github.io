@@ -8,11 +8,18 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
+import { createFileRoute } from '@tanstack/react-router'
+
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as BlogIndexRouteImport } from './routes/blog.index'
-import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BlogLayoutRouteImport } from './routes/blog/_layout'
+import { Route as BlogSeriesIndexRouteImport } from './routes/blog/series/index'
+import { Route as BlogPostsIndexRouteImport } from './routes/blog/posts/index'
+import { Route as BlogSeriesSeriesRouteImport } from './routes/blog/series/$series'
+import { Route as BlogPostsSlugRouteImport } from './routes/blog/posts/$slug'
+
+const BlogRouteImport = createFileRoute('/blog')()
 
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
@@ -29,36 +36,87 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/',
   getParentRoute: () => BlogRoute,
 } as any)
-const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
+const BlogLayoutRoute = BlogLayoutRouteImport.update({
+  id: '/_layout',
+  getParentRoute: () => BlogRoute,
+} as any)
+const BlogSeriesIndexRoute = BlogSeriesIndexRouteImport.update({
+  id: '/series/',
+  path: '/series/',
+  getParentRoute: () => BlogRoute,
+} as any)
+const BlogPostsIndexRoute = BlogPostsIndexRouteImport.update({
+  id: '/posts/',
+  path: '/posts/',
+  getParentRoute: () => BlogRoute,
+} as any)
+const BlogSeriesSeriesRoute = BlogSeriesSeriesRouteImport.update({
+  id: '/series/$series',
+  path: '/series/$series',
+  getParentRoute: () => BlogRoute,
+} as any)
+const BlogPostsSlugRoute = BlogPostsSlugRouteImport.update({
+  id: '/posts/$slug',
+  path: '/posts/$slug',
   getParentRoute: () => BlogRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/blog': typeof BlogRouteWithChildren
-  '/blog/$slug': typeof BlogSlugRoute
+  '/blog': typeof BlogLayoutRoute
   '/blog/': typeof BlogIndexRoute
+  '/blog/posts/$slug': typeof BlogPostsSlugRoute
+  '/blog/series/$series': typeof BlogSeriesSeriesRoute
+  '/blog/posts': typeof BlogPostsIndexRoute
+  '/blog/series': typeof BlogSeriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
+  '/blog/posts/$slug': typeof BlogPostsSlugRoute
+  '/blog/series/$series': typeof BlogSeriesSeriesRoute
+  '/blog/posts': typeof BlogPostsIndexRoute
+  '/blog/series': typeof BlogSeriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
-  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/_layout': typeof BlogLayoutRoute
   '/blog/': typeof BlogIndexRoute
+  '/blog/posts/$slug': typeof BlogPostsSlugRoute
+  '/blog/series/$series': typeof BlogSeriesSeriesRoute
+  '/blog/posts/': typeof BlogPostsIndexRoute
+  '/blog/series/': typeof BlogSeriesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blog' | '/blog/$slug' | '/blog/'
+  fullPaths:
+    | '/'
+    | '/blog'
+    | '/blog/'
+    | '/blog/posts/$slug'
+    | '/blog/series/$series'
+    | '/blog/posts'
+    | '/blog/series'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blog/$slug' | '/blog'
-  id: '__root__' | '/' | '/blog' | '/blog/$slug' | '/blog/'
+  to:
+    | '/'
+    | '/blog'
+    | '/blog/posts/$slug'
+    | '/blog/series/$series'
+    | '/blog/posts'
+    | '/blog/series'
+  id:
+    | '__root__'
+    | '/'
+    | '/blog'
+    | '/blog/_layout'
+    | '/blog/'
+    | '/blog/posts/$slug'
+    | '/blog/series/$series'
+    | '/blog/posts/'
+    | '/blog/series/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -89,24 +147,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof BlogRoute
     }
-    '/blog/$slug': {
-      id: '/blog/$slug'
-      path: '/$slug'
-      fullPath: '/blog/$slug'
-      preLoaderRoute: typeof BlogSlugRouteImport
+    '/blog/_layout': {
+      id: '/blog/_layout'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogLayoutRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/series/': {
+      id: '/blog/series/'
+      path: '/series'
+      fullPath: '/blog/series'
+      preLoaderRoute: typeof BlogSeriesIndexRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/posts/': {
+      id: '/blog/posts/'
+      path: '/posts'
+      fullPath: '/blog/posts'
+      preLoaderRoute: typeof BlogPostsIndexRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/series/$series': {
+      id: '/blog/series/$series'
+      path: '/series/$series'
+      fullPath: '/blog/series/$series'
+      preLoaderRoute: typeof BlogSeriesSeriesRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/posts/$slug': {
+      id: '/blog/posts/$slug'
+      path: '/posts/$slug'
+      fullPath: '/blog/posts/$slug'
+      preLoaderRoute: typeof BlogPostsSlugRouteImport
       parentRoute: typeof BlogRoute
     }
   }
 }
 
 interface BlogRouteChildren {
-  BlogSlugRoute: typeof BlogSlugRoute
+  BlogLayoutRoute: typeof BlogLayoutRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  BlogPostsSlugRoute: typeof BlogPostsSlugRoute
+  BlogSeriesSeriesRoute: typeof BlogSeriesSeriesRoute
+  BlogPostsIndexRoute: typeof BlogPostsIndexRoute
+  BlogSeriesIndexRoute: typeof BlogSeriesIndexRoute
 }
 
 const BlogRouteChildren: BlogRouteChildren = {
-  BlogSlugRoute: BlogSlugRoute,
+  BlogLayoutRoute: BlogLayoutRoute,
   BlogIndexRoute: BlogIndexRoute,
+  BlogPostsSlugRoute: BlogPostsSlugRoute,
+  BlogSeriesSeriesRoute: BlogSeriesSeriesRoute,
+  BlogPostsIndexRoute: BlogPostsIndexRoute,
+  BlogSeriesIndexRoute: BlogSeriesIndexRoute,
 }
 
 const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)

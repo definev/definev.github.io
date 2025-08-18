@@ -32,8 +32,7 @@ Stay tuned, it should be fun! 🚀
 
 Outside of tech, I’m a proud cat parent 🐾-I share my home with **three cats**, and yes, they occasionally walk across my keyboard while I’m coding. (So if you ever see some random “asdfghjkl” in my code snippets… you know who to blame 😼).
 
-
-![Mun, Ji, Tieu (From left to right)](/public/tieu-mun-ji.jpeg)
+![Mun, Ji, Tieu (From left to right)]({{}}/tieu-mun-ji.jpeg)
 
 ---
 

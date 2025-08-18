@@ -31,7 +31,7 @@ const Hero = () => {
                 {">"}{">"}SEE MY WORK
               </a>
               <Link
-                to="/blog"
+                to="/blog/posts"
                 className="btn-brutal-outline text-sm uppercase tracking-wider"
               >
                 {">"}{">"}READ MY BLOG
