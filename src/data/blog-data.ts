@@ -1,5 +1,5 @@
 // Auto-generated blog data - do not edit manually
-// Generated at: 2025-08-18T08:21:24.285Z
+// Generated at: 2025-11-13T11:04:00.955Z
 
 import type { BlogData, BlogPost } from '~/utils/blog'
 
@@ -22,7 +22,7 @@ export const blogData: BlogData = {
       "author": "Bùi Đại Dương (Zennn.mind)"
     }
   ],
-  "generatedAt": "2025-08-18T08:21:24.285Z",
+  "generatedAt": "2025-11-13T11:04:00.955Z",
   "totalPosts": 1
 } as BlogData
 
